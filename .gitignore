@@ -1,0 +1,29 @@
+# data and caches are re-downloadable; never commit them
+data/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# LaTeX build products
+paper/*.aux
+paper/*.bbl
+paper/*.bcf
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.run.xml
+paper/*.synctex.gz
+paper/*.toc
+
+# local settings and secrets
+.env
+.claude/settings.local.json
+paper/*.xmpdata
+paper/*.abs
+paper/pdfa.xmpi

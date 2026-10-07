@@ -1,0 +1,177 @@
+{
+ "result": "verification",
+ "git_commit": "0d490a32bf472529c6286eab1ca2cac786252740",
+ "config_sha256_12": "ae7d4fb30e64",
+ "generated_utc": "2026-10-07T21:12:21Z",
+ "config": {},
+ "experiments": {
+  "ok": true,
+  "result_files": {
+   "E01": [
+    "E01_corpus.json"
+   ],
+   "E02": [
+    "E02_measurement.json"
+   ],
+   "E03": [
+    "E03_sp500_return.json"
+   ],
+   "E04": [
+    "E04_sp500_direction.json"
+   ],
+   "E05": [
+    "E05_ics_change.json"
+   ],
+   "E06": [
+    "E06_published.json"
+   ],
+   "E07": [
+    "E07_incremental.json"
+   ],
+   "E08": [
+    "E08_estimation.json"
+   ],
+   "E09": [
+    "E09_index_definition.json"
+   ],
+   "E10": [
+    "E10_target_definition.json"
+   ],
+   "E11": [
+    "E11_horizon3.json"
+   ],
+   "E12": [
+    "E12_llm.json"
+   ]
+  },
+  "commits": [
+   "7f9ae0b2281ba8c6dca1e48388f33c356b6a37ce"
+  ],
+  "failed_files": [],
+  "experiments_missing_from_summary": []
+ },
+ "outline_numbers": {
+  "ok": true,
+  "values_checked": 255,
+  "mismatched": [],
+  "outline_equals_fresh_render": true,
+  "unfilled_placeholders": 0
+ },
+ "paper_numbers": {
+  "ok": true,
+  "keys_defined": 1159,
+  "keys_used": 149,
+  "uses": 185,
+  "numbers_file_equals_fresh_render": true,
+  "unknown_keys": [],
+  "typed_decimals": []
+ },
+ "paper_mirror": {
+  "ok": true,
+  "differing": [],
+  "missing": []
+ },
+ "references": {
+  "ok": true,
+  "n_bib": 25,
+  "n_plan": 25,
+  "only_in_bib": [],
+  "only_in_plan": []
+ },
+ "compile": {
+  "ok": true,
+  "return_codes": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "latex_errors": [],
+  "warnings": [
+   "Overfull \\hbox (407.66833pt too wide) detected at line 72",
+   "Overfull \\hbox (4.5pt too wide) in paragraph at lines 72--72"
+  ],
+  "pages": 17,
+  "fonts": [
+   "CMEX10",
+   "CMMI10",
+   "CMMI6",
+   "CMMI7",
+   "CMMI8",
+   "CMMI9",
+   "CMR10",
+   "CMR6",
+   "CMR7",
+   "CMR8",
+   "CMR9",
+   "CMSY10",
+   "CMSY8",
+   "CMSY9",
+   "DejaVuSans",
+   "DejaVuSans-Oblique",
+   "LibertinusMono-Regular",
+   "LibertinusSans-Bold",
+   "LibertinusSans-Regular",
+   "LibertinusSerif-Italic",
+   "LibertinusSerif-Regular"
+  ],
+  "fonts_not_embedded": []
+ },
+ "anonymity": {
+  "ok": true,
+  "pdf_checked": true,
+  "pdf_metadata": {
+   "Title": "ISO 19005 - Electronic document file format for long-term preservation (PDF/A)",
+   "Subject": "Layout by CEURART v0.5.3",
+   "Author": "Anonymous",
+   "Creator": "LaTeX with hyperref",
+   "Producer": "pdfTeX"
+  },
+  "violations": [],
+  "allowed_occurrences": [
+   {
+    "where": "paper/main.bbl",
+    "line": 40,
+    "pattern": "nagarajan",
+    "text": "\\bibitem[{Nagarajan and Mittal(2024)}]{nagarajan2024pebsa}",
+    "allowed": true
+   },
+   {
+    "where": "paper/main.bbl",
+    "line": 41,
+    "pattern": "nagarajan",
+    "text": "\\bibinfo{author}{V.~Nagarajan}, \\bibinfo{author}{A.~Mittal},",
+    "allowed": true
+   },
+   {
+    "where": "paper/references.bib",
+    "line": 4,
+    "pattern": "nagarajan",
+    "text": "@article{nagarajan2024pebsa,",
+    "allowed": true
+   },
+   {
+    "where": "paper/references.bib",
+    "line": 5,
+    "pattern": "vignesh",
+    "text": "author = {Nagarajan, Vignesh and Mittal, Aarav},",
+    "allowed": true
+   },
+   {
+    "where": "paper/references.bib",
+    "line": 5,
+    "pattern": "nagarajan",
+    "text": "author = {Nagarajan, Vignesh and Mittal, Aarav},",
+    "allowed": true
+   },
+   {
+    "where": "paper/main.pdf text",
+    "line": 957,
+    "pattern": "nagarajan",
+    "text": "[4] V. Nagarajan, A. Mittal, PEBSA: Predicting Economic Behavior via Sentiment Analysis, Inter-",
+    "allowed": true
+   }
+  ]
+ },
+ "all_ok": true
+}

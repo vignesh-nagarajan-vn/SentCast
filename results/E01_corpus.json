@@ -1,0 +1,319 @@
+{
+ "result": "E01_corpus",
+ "git_commit": "7f9ae0b2281ba8c6dca1e48388f33c356b6a37ce",
+ "config_sha256_12": "ae7d4fb30e64",
+ "generated_utc": "2026-10-06T22:53:55Z",
+ "config": {
+  "seed": 20261006,
+  "sample": {
+   "corpus_start": "2015-02-19",
+   "corpus_end": "2026-09-30",
+   "first_index_month": "2015-03",
+   "last_target_month": "2026-09",
+   "initial_window": 48,
+   "long_initial_window": 120,
+   "long_first_target_month": "1980-03"
+  },
+  "index": {
+   "min_headlines_per_day": 5,
+   "min_days_per_month": 15,
+   "title_month_min_share": 0.95,
+   "composite_members": [
+    "lm",
+    "vader",
+    "finbert",
+    "clf"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 10000,
+   "bootstrap_mean_block": 6,
+   "ci_level": 0.9,
+   "alpha": 0.05,
+   "horizons": [
+    1,
+    3
+   ]
+  },
+  "release_lag_months": {
+   "ics": {
+    "sp500": 1,
+    "ics": 0
+   },
+   "sp500_return": {
+    "sp500": 0,
+    "ics": 0
+   },
+   "epu": {
+    "sp500": 1,
+    "ics": 1
+   }
+  },
+  "publication_lag_days": {
+   "sffed_nsi": 7
+  },
+  "gkg": {
+   "base_url": "https://data.gdeltproject.org/gdeltv2/",
+   "files_per_day": 2,
+   "slots_per_day": 96,
+   "max_retries": 3,
+   "workers": 16,
+   "min_slug_words": 4,
+   "us_location_pattern": "#US#",
+   "excluded_domains": [
+    "prnewswire.com",
+    "businesswire.com",
+    "globenewswire.com",
+    "openpr.com",
+    "pr-inside.com",
+    "einpresswire.com",
+    "accesswire.com",
+    "prweb.com",
+    "marketwired.com",
+    "newswire.com",
+    "pr.com",
+    "send2press.com",
+    "24-7pressrelease.com",
+    "prlog.org",
+    "webwire.com"
+   ]
+  },
+  "n_keywords": 54
+ },
+ "experiment": "E01",
+ "name": "corpus",
+ "files": {
+  "requested": 8484,
+  "downloaded": 8450,
+  "failed": 34,
+  "unavailable_by_month": {
+   "2025-06": 32,
+   "2025-07": 2
+  },
+  "days_with_no_file": 17,
+  "days_with_one_file": 0,
+  "max_slots_tried": 95,
+  "replaced_by_next_slot": 134,
+  "bytes_downloaded": 60736938050,
+  "first_day": "2015-02-19",
+  "last_day": "2026-09-30",
+  "days": 4242
+ },
+ "funnel": {
+  "rows": 15462640,
+  "web": 15451737,
+  "us": 6604345,
+  "headline": 5641583,
+  "keyword": 164612,
+  "kept": 160636
+ },
+ "dedup": {
+  "kept_before_dedup": 160636,
+  "after_url_dedup": 160635,
+  "after_headline_dedup": 125105
+ },
+ "headlines_per_index_month": {
+  "months": 138,
+  "min": 498,
+  "median": 870.5,
+  "mean": 897.8695652173913,
+  "max": 2015,
+  "total": 123906
+ },
+ "valid_days_per_index_month": {
+  "min": 16,
+  "month_of_min": "2025-06",
+  "median": 30.0,
+  "max": 33
+ },
+ "index_months_failing_coverage": [],
+ "n_index_months_failing_coverage": 0,
+ "titles": {
+  "share_with_title_overall": 0.5339914471843651,
+  "first_month_at_threshold": "2019-10",
+  "months_at_threshold": 83,
+  "threshold": 0.95
+ },
+ "domains": {
+  "distinct": 9553,
+  "top10_share": 0.11979537188761441,
+  "top20": [
+   {
+    "domain": "yahoo.com",
+    "share": 0.024355541345269974
+   },
+   {
+    "domain": "reuters.com",
+    "share": 0.02131009951640622
+   },
+   {
+    "domain": "4-traders.com",
+    "share": 0.01334878701890412
+   },
+   {
+    "domain": "msn.com",
+    "share": 0.011902002318052836
+   },
+   {
+    "domain": "marketwatch.com",
+    "share": 0.01089484832740498
+   },
+   {
+    "domain": "marketscreener.com",
+    "share": 0.009312177770672635
+   },
+   {
+    "domain": "indiatimes.com",
+    "share": 0.007889372926741536
+   },
+   {
+    "domain": "finanznachrichten.de",
+    "share": 0.007225930218616362
+   },
+   {
+    "domain": "nasdaq.com",
+    "share": 0.006866232364813557
+   },
+   {
+    "domain": "fool.com",
+    "share": 0.006690380080732185
+   },
+   {
+    "domain": "cnbc.com",
+    "share": 0.0061068702290076335
+   },
+   {
+    "domain": "business-standard.com",
+    "share": 0.006090883657727509
+   },
+   {
+    "domain": "businessinsider.com",
+    "share": 0.006050917229527197
+   },
+   {
+    "domain": "iheart.com",
+    "share": 0.005923024659286199
+   },
+   {
+    "domain": "benzinga.com",
+    "share": 0.00473202509891691
+   },
+   {
+    "domain": "forbes.com",
+    "share": 0.004548179529195476
+   },
+   {
+    "domain": "seekingalpha.com",
+    "share": 0.004332360816913792
+   },
+   {
+    "domain": "dailypolitical.com",
+    "share": 0.0039646696774709245
+   },
+   {
+    "domain": "menafn.com",
+    "share": 0.0039486831061908
+   },
+   {
+    "domain": "hellenicshippingnews.com",
+    "share": 0.0038927301067103633
+   }
+  ]
+ },
+ "source_mix": {
+  "year_a": 2015,
+  "year_b": 2025,
+  "share_of_year_b_headlines_from_domains_seen_in_year_a": 0.5450085847436841,
+  "share_of_year_a_headlines_from_domains_seen_in_year_b": 0.43400055345447835,
+  "top20_domains_in_common": 3
+ },
+ "by_year": {
+  "2015": {
+   "files": 632,
+   "kept_per_file": 21.018987341772153,
+   "headlines_after_dedup": 10841,
+   "distinct_domains": 2719,
+   "share_with_title": 0.0
+  },
+  "2016": {
+   "files": 732,
+   "kept_per_file": 21.806010928961747,
+   "headlines_after_dedup": 13185,
+   "distinct_domains": 3242,
+   "share_with_title": 0.0
+  },
+  "2017": {
+   "files": 730,
+   "kept_per_file": 19.005479452054793,
+   "headlines_after_dedup": 11083,
+   "distinct_domains": 2955,
+   "share_with_title": 0.0
+  },
+  "2018": {
+   "files": 730,
+   "kept_per_file": 25.40821917808219,
+   "headlines_after_dedup": 14013,
+   "distinct_domains": 3335,
+   "share_with_title": 0.0
+  },
+  "2019": {
+   "files": 730,
+   "kept_per_file": 21.834246575342465,
+   "headlines_after_dedup": 11965,
+   "distinct_domains": 2953,
+   "share_with_title": 0.23752611784371083
+  },
+  "2020": {
+   "files": 732,
+   "kept_per_file": 24.969945355191257,
+   "headlines_after_dedup": 13219,
+   "distinct_domains": 2898,
+   "share_with_title": 0.9985626749375899
+  },
+  "2021": {
+   "files": 730,
+   "kept_per_file": 13.746575342465754,
+   "headlines_after_dedup": 7700,
+   "distinct_domains": 2053,
+   "share_with_title": 0.9992207792207792
+  },
+  "2022": {
+   "files": 730,
+   "kept_per_file": 13.82876712328767,
+   "headlines_after_dedup": 8019,
+   "distinct_domains": 1998,
+   "share_with_title": 0.9995011846863698
+  },
+  "2023": {
+   "files": 730,
+   "kept_per_file": 14.686301369863013,
+   "headlines_after_dedup": 8782,
+   "distinct_domains": 2376,
+   "share_with_title": 0.9995445228877249
+  },
+  "2024": {
+   "files": 732,
+   "kept_per_file": 12.580601092896174,
+   "headlines_after_dedup": 7763,
+   "distinct_domains": 2059,
+   "share_with_title": 0.9994847352827515
+  },
+  "2025": {
+   "files": 696,
+   "kept_per_file": 23.29022988505747,
+   "headlines_after_dedup": 12231,
+   "distinct_domains": 2607,
+   "share_with_title": 0.9990188864361049
+  },
+  "2026": {
+   "files": 546,
+   "kept_per_file": 15.532967032967033,
+   "headlines_after_dedup": 6304,
+   "distinct_domains": 1751,
+   "share_with_title": 0.9990482233502538
+  }
+ },
+ "files_out": [
+  "E01_monthly_counts.csv"
+ ]
+}

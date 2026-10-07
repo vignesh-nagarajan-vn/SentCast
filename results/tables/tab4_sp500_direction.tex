@@ -1,0 +1,29 @@
+\begin{tabular}{lrcrrrrr}
+\toprule
+Predictor & Hit rate (\%) & 90\% interval & Predicted up (\%) & PT $p$ & PT $p$ adj. & Brier & DM $p$ vs L0 \\
+\midrule
+Base rate (L0) & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2369 & n/a \\
+Lagged return (L1) & 62.2 & [55.6, 68.9] & 98.9 & 0.779 &  & 0.2420 & 0.134 \\
+\midrule
+Composite & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2377 & 0.818 \\
+FinBERT & 63.3 & [56.7, 70.0] & 100.0 & n/a & n/a & 0.2417 & 0.048 \\
+Classifier & 63.3 & [56.7, 70.0] & 100.0 & n/a & n/a & 0.2401 & 0.094 \\
+LM lexicon & 63.3 & [56.7, 70.0] & 100.0 & n/a & n/a & 0.2407 & 0.530 \\
+VADER & 63.3 & [56.7, 70.0] & 100.0 & n/a & n/a & 0.2372 & 0.967 \\
+GDELT tone & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2392 & 0.663 \\
+\midrule
+\multicolumn{8}{l}{Published indices and their benchmarks, estimated from 1980: same 90 test months} \\
+Base rate (L0) & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2327 & n/a \\
+Lagged return (L1) & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2340 & 0.465 \\
+SF Fed index & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2321 & 0.606 \\
+EPU index & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2392 & 0.533 \\
+ICS level & 63.3 & [56.7, 70.0] & 100.0 & n/a &  & 0.2339 & 0.049 \\
+\midrule
+\multicolumn{8}{l}{Published indices and their benchmarks, estimated from 1980: long sample, 439 test months} \\
+Base rate (L0) & 63.8 & [59.7, 67.9] & 100.0 & n/a &  & 0.2323 & n/a \\
+Lagged return (L1) & 63.8 & [59.7, 67.7] & 100.0 & n/a &  & 0.2329 & 0.363 \\
+SF Fed index & 62.6 & [58.8, 66.7] & 96.1 & 0.532 &  & 0.2353 & 0.126 \\
+EPU index & 63.1 & [59.0, 67.0] & 98.9 & 0.776 &  & 0.2340 & 0.622 \\
+ICS level & 63.8 & [59.7, 67.7] & 100.0 & n/a &  & 0.2333 & 0.139 \\
+\bottomrule
+\end{tabular}

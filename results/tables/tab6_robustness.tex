@@ -1,0 +1,22 @@
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ &  & \multicolumn{3}{c}{S\&P 500} & \multicolumn{4}{c}{ICS change} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-9}
+Variant & $n$ & $R^2_{OS}$ vs M0 & $p$ & Hit rate / base & $R^2_{OS}$ vs M0 & $p$ & $R^2_{OS}$ vs M1 & $p$ \\
+\midrule
+Initial window 36 & 102 & 0.75 & 0.142 & 64.7 / 65.7 & $-$1.35 & 0.354 & $-$0.43 & 0.264 \\
+Initial window 60 & 78 & 2.14 & 0.062 & 64.1 / 64.1 & $-$2.66 & 0.528 & $-$2.94 & 0.536 \\
+Rolling window 48 & 90 & 0.97 & 0.153 & 63.3 / 63.3 & $-$2.34 & 0.371 & $-$1.33 & 0.301 \\
+\midrule
+Index in first differences & 89 & $-$1.72 & 0.889 & 61.8 / 62.9 & 1.63 & 0.091 & 1.32 & 0.092 \\
+Headline-weighted index & 90 & $-$0.06 & 0.253 & 63.3 / 63.3 & $-$1.53 & 0.362 & $-$1.24 & 0.324 \\
+Page-title index (title months) & 47 & 2.14 & 0.175 & 63.8 / 63.8 & 0.53 & 0.284 & $-$1.17 & 0.533 \\
+URL-headline index (title months) & 47 & 1.59 & 0.191 & 63.8 / 63.8 & $-$0.18 & 0.343 & $-$1.73 & 0.619 \\
+\midrule
+Raw log return & 90 & 0.92 & 0.160 &  &  &  &  &  \\
+Simple excess return & 90 & 1.33 & 0.117 &  &  &  &  &  \\
+ICS own lag, release lag 1 & 88 &  &  &  & $-$2.80 & 0.600 & $-$1.90 & 0.373 \\
+\midrule
+Three-month horizon & 86 & 5.69 & 0.049 &  & 0.85 & 0.181 & $-$0.30 & 0.449 \\
+\bottomrule
+\end{tabular}

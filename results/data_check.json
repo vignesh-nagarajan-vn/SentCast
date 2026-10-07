@@ -1,0 +1,446 @@
+{
+ "result": "data_check",
+ "git_commit": "97b98d658b238792a5f6874f76f3b06259431477-dirty",
+ "config_sha256_12": "bf048a71a23b",
+ "generated_utc": "2026-10-06T18:49:30Z",
+ "config": {},
+ "checks": [
+  {
+   "source": "Yahoo Finance ^GSPC",
+   "what": "S&P 500 price index",
+   "access": "yfinance (unofficial API), no key",
+   "ok": true,
+   "rows": 24808,
+   "frequency": "daily",
+   "coverage_start": "1927-12-30",
+   "coverage_end": "2026-10-06",
+   "note": "saved sample, not refreshed",
+   "check": "yahoo"
+  },
+  {
+   "source": "Yahoo Finance ^SP500TR",
+   "what": "S&P 500 total return index",
+   "access": "yfinance (unofficial API), no key",
+   "ok": true,
+   "rows": 9763,
+   "frequency": "daily",
+   "coverage_start": "1988-01-04",
+   "coverage_end": "2026-10-06",
+   "note": "saved sample, not refreshed",
+   "check": "yahoo"
+  },
+  {
+   "source": "FRED SP500",
+   "what": "S&P 500 daily close",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500",
+   "access": "CSV endpoint, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 48903,
+   "rows": 2512,
+   "coverage_start": "2016-10-06",
+   "coverage_end": "2026-10-05",
+   "check": "fred"
+  },
+  {
+   "source": "FRED UMCSENT",
+   "what": "UMich consumer sentiment",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UMCSENT",
+   "access": "CSV endpoint, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 13422,
+   "rows": 676,
+   "coverage_start": "1952-11-01",
+   "coverage_end": "2026-08-01",
+   "check": "fred"
+  },
+  {
+   "source": "FRED TB3MS",
+   "what": "3-month Treasury bill rate",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=TB3MS",
+   "access": "CSV endpoint, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 17865,
+   "rows": 1113,
+   "coverage_start": "1934-01-01",
+   "coverage_end": "2026-09-01",
+   "check": "fred"
+  },
+  {
+   "source": "FRED NASDAQCOM",
+   "what": "Nasdaq Composite daily close (used for trading dates only)",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQCOM",
+   "access": "CSV endpoint, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 280976,
+   "rows": 14034,
+   "coverage_start": "1971-02-05",
+   "coverage_end": "2026-10-05",
+   "check": "fred"
+  },
+  {
+   "source": "Welch-Goyal predictor data (A. Goyal's website)",
+   "what": "S&P 500 month-end index level, monthly",
+   "url": "https://sites.google.com/view/agoyal145",
+   "access": "Google Sheets XLSX export, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 485064,
+   "rows": 1860,
+   "frequency": "monthly",
+   "coverage_start": "187101",
+   "coverage_end": "202512",
+   "columns": [
+    "yyyymm",
+    "Index",
+    "D12",
+    "E12",
+    "b/m",
+    "tbl",
+    "AAA",
+    "BAA",
+    "lty",
+    "ntis",
+    "Rfree",
+    "infl",
+    "ltr",
+    "corpr",
+    "svar",
+    "csp",
+    "CRSP_SPvw",
+    "CRSP_SPvwx"
+   ],
+   "check": "goyal"
+  },
+  {
+   "source": "University of Michigan Surveys of Consumers",
+   "what": "Index of Consumer Sentiment (tbmics.csv)",
+   "url": "https://www.sca.isr.umich.edu/files/tbmics.csv",
+   "access": "direct CSV, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 12246,
+   "rows": 677,
+   "rows_since_1978": 585,
+   "coverage_start": "November 1952",
+   "coverage_end": "September 2026",
+   "last_value": 48.1,
+   "check": "umich"
+  },
+  {
+   "source": "Stooq ^SPX",
+   "what": "S&P 500 daily history",
+   "url": "https://stooq.com/q/d/l/?s=^spx&i=d",
+   "access": "CSV endpoint",
+   "status": 404,
+   "ok": false,
+   "bytes": 271,
+   "note": "no CSV returned (HTTP 404)",
+   "check": "stooq"
+  },
+  {
+   "source": "San Francisco Fed Daily News Sentiment Index",
+   "what": "published benchmark index",
+   "url": "https://www.frbsf.org/wp-content/uploads/news_sentiment_data.xlsx",
+   "access": "direct XLSX, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 418534,
+   "rows": 17060,
+   "frequency": "daily",
+   "coverage_start": "1980-01-01",
+   "coverage_end": "2026-10-04",
+   "check": "sffed"
+  },
+  {
+   "source": "Economic Policy Uncertainty index (US, monthly)",
+   "what": "published news-based index",
+   "url": "https://www.policyuncertainty.com/media/US_Policy_Uncertainty_Data.xlsx",
+   "access": "direct XLSX, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 71230,
+   "rows": 1521,
+   "frequency": "monthly",
+   "columns": [
+    "Year",
+    "Month",
+    "News_Based_Policy_Uncert_Index"
+   ],
+   "coverage_start": "1900-01",
+   "coverage_end": "2026-09",
+   "check": "epu"
+  },
+  {
+   "source": "AAII Investor Sentiment Survey",
+   "what": "weekly bullish/neutral/bearish shares",
+   "url": "https://www.aaii.com/files/surveys/sentiment.xls",
+   "access": "direct XLS",
+   "status": 403,
+   "ok": false,
+   "bytes": 855,
+   "note": "refused for scripted access (bot protection)",
+   "check": "aaii"
+  },
+  {
+   "source": "GDELT GKG 2.0 file",
+   "what": "15-minute file 20150219120000",
+   "url": "http://data.gdeltproject.org/gdeltv2/20150219120000.gkg.csv.zip",
+   "access": "direct ZIP, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 7028948,
+   "bytes_unzipped": 21987672,
+   "rows": 2046,
+   "rows_with_page_title": 0,
+   "seconds": 0.79,
+   "check": "gdelt_gkg"
+  },
+  {
+   "source": "GDELT GKG 2.0 file",
+   "what": "15-minute file 20190701120000",
+   "url": "http://data.gdeltproject.org/gdeltv2/20190701120000.gkg.csv.zip",
+   "access": "direct ZIP, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 7188523,
+   "bytes_unzipped": 22551459,
+   "rows": 1978,
+   "rows_with_page_title": 0,
+   "seconds": 0.79,
+   "check": "gdelt_gkg"
+  },
+  {
+   "source": "GDELT GKG 2.0 file",
+   "what": "15-minute file 20191001120000",
+   "url": "http://data.gdeltproject.org/gdeltv2/20191001120000.gkg.csv.zip",
+   "access": "direct ZIP, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 8261735,
+   "bytes_unzipped": 25997527,
+   "rows": 2151,
+   "rows_with_page_title": 2151,
+   "seconds": 0.85,
+   "check": "gdelt_gkg"
+  },
+  {
+   "source": "GDELT GKG 2.0 file",
+   "what": "15-minute file 20260930120000",
+   "url": "http://data.gdeltproject.org/gdeltv2/20260930120000.gkg.csv.zip",
+   "access": "direct ZIP, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 5944739,
+   "bytes_unzipped": 18399376,
+   "rows": 1341,
+   "rows_with_page_title": 1341,
+   "seconds": 0.76,
+   "check": "gdelt_gkg"
+  },
+  {
+   "source": "GDELT GKG 2.0 lastupdate.txt",
+   "what": "latest file",
+   "ok": true,
+   "note": "http://data.gdeltproject.org/gdeltv2/20261006184500.gkg.csv.zip",
+   "check": "gdelt_gkg"
+  },
+  {
+   "source": "GDELT DOC 2.0 API",
+   "what": "article list for one day (max 250 per call)",
+   "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+   "access": "JSON API, no key; one request per 5 seconds",
+   "status": 429,
+   "ok": false,
+   "rows": null,
+   "bytes": 444,
+   "seconds": 94.28,
+   "attempts": 3,
+   "statuses": [
+    429,
+    429,
+    429
+   ],
+   "note": "Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries. All high-traffic users should switch to our ngrams dataset:",
+   "check": "gdelt_doc"
+  },
+  {
+   "source": "Reddit via Arctic Shift archive API",
+   "what": "r/economics posts 2008-09-15",
+   "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+   "access": "unofficial archive API, no key",
+   "status": 200,
+   "ok": true,
+   "rows": 100,
+   "note": null,
+   "check": "reddit"
+  },
+  {
+   "source": "Reddit via Arctic Shift archive API",
+   "what": "r/economics posts 2019-03-04",
+   "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+   "access": "unofficial archive API, no key",
+   "status": 200,
+   "ok": true,
+   "rows": 55,
+   "note": null,
+   "check": "reddit"
+  },
+  {
+   "source": "Reddit via Arctic Shift archive API",
+   "what": "r/economics posts 2026-09-01",
+   "url": "https://arctic-shift.photon-reddit.com/api/posts/search",
+   "access": "unofficial archive API, no key",
+   "status": 200,
+   "ok": true,
+   "rows": 40,
+   "note": null,
+   "check": "reddit"
+  },
+  {
+   "source": "Wikipedia Current Events portal",
+   "what": "Portal:Current events/2006 May 10",
+   "url": "https://en.wikipedia.org/w/api.php",
+   "access": "MediaWiki API, no key",
+   "status": 200,
+   "ok": true,
+   "rows": 2,
+   "check": "wikipedia"
+  },
+  {
+   "source": "Wikipedia Current Events portal",
+   "what": "Portal:Current events/2019 August 14",
+   "url": "https://en.wikipedia.org/w/api.php",
+   "access": "MediaWiki API, no key",
+   "status": 200,
+   "ok": true,
+   "rows": 15,
+   "check": "wikipedia"
+  },
+  {
+   "source": "Loughran-McDonald master dictionary",
+   "what": "finance sentiment word lists",
+   "url": "https://sraf.nd.edu/loughranmcdonald-master-dictionary/",
+   "access": "Google Drive direct link, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 9093460,
+   "note": "86553 words; 2345 negative; 347 positive",
+   "check": "models"
+  },
+  {
+   "source": "Financial PhraseBank",
+   "what": "labelled sentences for the trained classifier",
+   "url": "https://huggingface.co/datasets/takala/financial_phrasebank/resolve/main/data/FinancialPhraseBank-v1.0.zip",
+   "access": "Hugging Face direct file, no key",
+   "status": 200,
+   "ok": true,
+   "bytes": 681890,
+   "rows": 4846,
+   "check": "models"
+  },
+  {
+   "source": "Hugging Face model ProsusAI/finbert",
+   "what": "FinBERT weights",
+   "access": "Hugging Face Hub, no key",
+   "status": 200,
+   "ok": true,
+   "note": "sha 4556d13015211d73dccd3fdd39d39232506f3e43",
+   "check": "models"
+  }
+ ],
+ "cross_checks": {
+  "sp500_yahoo_vs_fred": {
+   "overlap_days": 2512,
+   "start": "2016-10-06",
+   "end": "2026-10-05",
+   "max_abs_rel_diff": 0.0011893436495267196,
+   "days_rel_diff_above_1e-4": 2
+  },
+  "sp500_month_end_goyal_vs_fred": {
+   "overlap_months": 110,
+   "start": "2016-11",
+   "end": "2025-12",
+   "max_abs_rel_diff": 0.02369707884181027,
+   "months_rel_diff_above_1e-3": 1,
+   "months_rel_diff_above_1e-4": 1,
+   "months_above_1e-3": [
+    {
+     "month": "2017-11",
+     "goyal": 2584.840088,
+     "fred": 2647.58
+    }
+   ]
+  },
+  "sp500_month_end_goyal_vs_yahoo": {
+   "overlap_months": 912,
+   "start": "1950-01",
+   "end": "2025-12",
+   "max_abs_rel_diff": 0.023697107650633265,
+   "months_rel_diff_above_1e-3": 9,
+   "months_rel_diff_above_1e-4": 11,
+   "months_above_1e-3": [
+    {
+     "month": "1950-04",
+     "goyal": 18.07,
+     "yahoo": 17.959999084472656
+    },
+    {
+     "month": "1951-03",
+     "goyal": 21.4,
+     "yahoo": 21.479999542236328
+    },
+    {
+     "month": "1967-10",
+     "goyal": 93.9,
+     "yahoo": 93.3000030517578
+    },
+    {
+     "month": "1968-04",
+     "goyal": 97.59,
+     "yahoo": 97.45999908447266
+    },
+    {
+     "month": "1969-10",
+     "goyal": 97.24,
+     "yahoo": 97.12000274658205
+    },
+    {
+     "month": "1970-09",
+     "goyal": 84.21,
+     "yahoo": 84.30000305175781
+    },
+    {
+     "month": "1971-06",
+     "goyal": 99.7,
+     "yahoo": 98.6999969482422
+    },
+    {
+     "month": "1983-06",
+     "goyal": 168.11,
+     "yahoo": 167.63999938964844
+    },
+    {
+     "month": "2017-11",
+     "goyal": 2584.840088,
+     "yahoo": 2647.580078125
+    }
+   ]
+  },
+  "ics_umich_vs_fred": {
+   "overlap_months": 584,
+   "max_abs_diff": 0.0,
+   "umich_last": "2026-09-01",
+   "fred_last": "2026-08-01"
+  },
+  "ics_vintage_2015_06_30_vs_current": {
+   "months": 450,
+   "vintage_last": "2015-06-01",
+   "months_differing": 0,
+   "max_abs_diff": 0.0
+  }
+ }
+}

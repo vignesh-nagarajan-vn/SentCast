@@ -1,0 +1,256 @@
+placeholder,file,path,format,rendered
+E01_corpus:dedup.after_headline_dedup:int,results/E01_corpus.json,dedup.after_headline_dedup,int,"125,105"
+E01_corpus:files.downloaded:int,results/E01_corpus.json,files.downloaded,int,"8,450"
+E01_corpus:files.first_day:str,results/E01_corpus.json,files.first_day,str,2015-02-19
+E01_corpus:files.last_day:str,results/E01_corpus.json,files.last_day,str,2026-09-30
+E03_sp500_return:sample.n_oos:int,results/E03_sp500_return.json,sample.n_oos,int,90
+E03_sp500_return:sample.first_oos_target:str,results/E03_sp500_return.json,sample.first_oos_target,str,2019-04
+E03_sp500_return:sample.last_oos_target:str,results/E03_sp500_return.json,sample.last_oos_target,str,2026-09
+r2:E03_sp500_return:results.composite.M2_vs_M0,results/E03_sp500_return.json,results.composite.M2_vs_M0,r2,"1.03% (90% interval -2.44% to 4.80%, p = 0.149, n = 90)"
+E03_sp500_return:decision.outcome:str,results/E03_sp500_return.json,decision.outcome,str,null
+hit:E04_sp500_direction:results.composite.L2,results/E04_sp500_direction.json,results.composite.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+E04_sp500_direction:decision.outcome:str,results/E04_sp500_direction.json,decision.outcome,str,null
+r2:E05_ics_change:results.composite.M2_vs_M0,results/E05_ics_change.json,results.composite.M2_vs_M0,r2,"-1.81% (90% interval -7.85% to 3.10%, p = 0.450, n = 90)"
+r2:E05_ics_change:results.composite.M3_vs_M1,results/E05_ics_change.json,results.composite.M3_vs_M1,r2,"-1.35% (90% interval -9.19% to 4.49%, p = 0.387, n = 90)"
+E05_ics_change:decision.outcome:str,results/E05_ics_change.json,decision.outcome,str,null
+audit_checks:n_observations:int,results/audit_checks.json,n_observations,int,4
+r2:E03_sp500_return:results.composite.M2_vs_M0,results/E03_sp500_return.json,results.composite.M2_vs_M0,r2,"1.03% (90% interval -2.44% to 4.80%, p = 0.149, n = 90)"
+E03_sp500_return:decision.outcome:str,results/E03_sp500_return.json,decision.outcome,str,null
+hit:E04_sp500_direction:results.composite.L2,results/E04_sp500_direction.json,results.composite.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+E04_sp500_direction:decision.outcome:str,results/E04_sp500_direction.json,decision.outcome,str,null
+r2:E05_ics_change:results.composite.M2_vs_M0,results/E05_ics_change.json,results.composite.M2_vs_M0,r2,"-1.81% (90% interval -7.85% to 3.10%, p = 0.450, n = 90)"
+r2:E05_ics_change:results.composite.M3_vs_M1,results/E05_ics_change.json,results.composite.M3_vs_M1,r2,"-1.35% (90% interval -9.19% to 4.49%, p = 0.387, n = 90)"
+E05_ics_change:decision.outcome:str,results/E05_ics_change.json,decision.outcome,str,null
+r2:E06_published:results.long.sp500_return.sffed_nsi.M2_vs_M0,results/E06_published.json,results.long.sp500_return.sffed_nsi.M2_vs_M0,r2,"-0.79% (90% interval -1.98% to 0.36%, p = 0.516, n = 439)"
+r2:E06_published:results.long.ics_change.sffed_nsi.M3_vs_M1,results/E06_published.json,results.long.ics_change.sffed_nsi.M3_vs_M1,r2,"-0.58% (90% interval -2.61% to 1.19%, p = 0.269, n = 439)"
+E06_published:sample.n_oos:int,results/E06_published.json,sample.n_oos,int,439
+E03_sp500_return:sample.first_origin:str,results/E03_sp500_return.json,sample.first_origin,str,2015-03
+E03_sp500_return:sample.last_origin:str,results/E03_sp500_return.json,sample.last_origin,str,2026-08
+E04_sp500_direction:results.baselines.L0.share_up_actual:pct1,results/E04_sp500_direction.json,results.baselines.L0.share_up_actual,pct1,63.3
+E03_sp500_return:sample.n_origins:int,results/E03_sp500_return.json,sample.n_origins,int,138
+E03_sp500_return:sample.initial_window:int,results/E03_sp500_return.json,sample.initial_window,int,48
+E03_sp500_return:sample.n_oos:int,results/E03_sp500_return.json,sample.n_oos,int,90
+E01_corpus:files.requested:int,results/E01_corpus.json,files.requested,int,"8,484"
+E01_corpus:files.downloaded:int,results/E01_corpus.json,files.downloaded,int,"8,450"
+E01_corpus:files.replaced_by_next_slot:int,results/E01_corpus.json,files.replaced_by_next_slot,int,134
+E01_corpus:files.failed:int,results/E01_corpus.json,files.failed,int,34
+E01_corpus:files.bytes_downloaded:gb,results/E01_corpus.json,files.bytes_downloaded,gb,60.7
+E01_corpus:files.days_with_no_file:int,results/E01_corpus.json,files.days_with_no_file,int,17
+E01_corpus:files.days_with_one_file:int,results/E01_corpus.json,files.days_with_one_file,int,0
+E01_corpus:funnel.rows:int,results/E01_corpus.json,funnel.rows,int,"15,462,640"
+E01_corpus:funnel.us:int,results/E01_corpus.json,funnel.us,int,"6,604,345"
+E01_corpus:funnel.headline:int,results/E01_corpus.json,funnel.headline,int,"5,641,583"
+E01_corpus:funnel.keyword:int,results/E01_corpus.json,funnel.keyword,int,"164,612"
+E01_corpus:funnel.kept:int,results/E01_corpus.json,funnel.kept,int,"160,636"
+E01_corpus:dedup.after_headline_dedup:int,results/E01_corpus.json,dedup.after_headline_dedup,int,"125,105"
+E01_corpus:headlines_per_index_month.min:int,results/E01_corpus.json,headlines_per_index_month.min,int,498
+E01_corpus:headlines_per_index_month.median:count,results/E01_corpus.json,headlines_per_index_month.median,count,870.5
+E01_corpus:headlines_per_index_month.max:int,results/E01_corpus.json,headlines_per_index_month.max,int,"2,015"
+E01_corpus:n_index_months_failing_coverage:int,results/E01_corpus.json,n_index_months_failing_coverage,int,0
+E01_corpus:headlines_per_index_month.months:int,results/E01_corpus.json,headlines_per_index_month.months,int,138
+E01_corpus:headlines_per_index_month.total:int,results/E01_corpus.json,headlines_per_index_month.total,int,"123,906"
+E01_corpus:dedup.after_headline_dedup:int,results/E01_corpus.json,dedup.after_headline_dedup,int,"125,105"
+E01_corpus:domains.distinct:int,results/E01_corpus.json,domains.distinct,int,"9,553"
+E01_corpus:domains.top10_share:pct1,results/E01_corpus.json,domains.top10_share,pct1,12.0
+E01_corpus:by_year.2015.distinct_domains:int,results/E01_corpus.json,by_year.2015.distinct_domains,int,"2,719"
+E01_corpus:by_year.2025.distinct_domains:int,results/E01_corpus.json,by_year.2025.distinct_domains,int,"2,607"
+E01_corpus:titles.share_with_title_overall:pct1,results/E01_corpus.json,titles.share_with_title_overall,pct1,53.4
+E01_corpus:titles.first_month_at_threshold:str,results/E01_corpus.json,titles.first_month_at_threshold,str,2019-10
+E02_measurement:score_stats.lm.share_zero:pct1,results/E02_measurement.json,score_stats.lm.share_zero,pct1,62.6
+E02_measurement:score_stats.vader.share_zero:pct1,results/E02_measurement.json,score_stats.vader.share_zero,pct1,38.2
+E03_sp500_return:sample.initial_window:int,results/E03_sp500_return.json,sample.initial_window,int,48
+E03_sp500_return:sample.n_oos:int,results/E03_sp500_return.json,sample.n_oos,int,90
+E03_sp500_return:sample.initial_window:int,results/E03_sp500_return.json,sample.initial_window,int,48
+E02_measurement:e_labelled_data.clf_5fold.n:int,results/E02_measurement.json,e_labelled_data.clf_5fold.n,int,"4,846"
+E02_measurement:e_labelled_data.clf_5fold.accuracy_mean:pct1,results/E02_measurement.json,e_labelled_data.clf_5fold.accuracy_mean,pct1,76.2
+E02_measurement:e_labelled_data.majority_class_share:pct1,results/E02_measurement.json,e_labelled_data.majority_class_share,pct1,59.4
+E12_llm:usage.model:str,results/E12_llm.json,usage.model,str,claude-haiku-4-5
+E12_llm:second_model.usage.model:str,results/E12_llm.json,second_model.usage.model,str,claude-sonnet-5-5
+E12_llm:usage.requests:int,results/E12_llm.json,usage.requests,int,"3,091"
+E12_llm:second_model.usage.requests:int,results/E12_llm.json,second_model.usage.requests,int,"3,136"
+E12_llm:usage.discarded_batches:int,results/E12_llm.json,usage.discarded_batches,int,5
+E12_llm:second_model.usage.discarded_batches:int,results/E12_llm.json,second_model.usage.discarded_batches,int,53
+E12_llm:usage.requested_this_run:int,results/E12_llm.json,usage.requested_this_run,int,831
+E12_llm:second_model.usage.requested_this_run:int,results/E12_llm.json,second_model.usage.requested_this_run,int,"2,631"
+E12_llm:usage.labelled:int,results/E12_llm.json,usage.labelled,int,"125,105"
+E12_llm:usage.texts:int,results/E12_llm.json,usage.texts,int,"125,105"
+E12_llm:second_model.usage.labelled:int,results/E12_llm.json,second_model.usage.labelled,int,"124,984"
+E12_llm:by_training_cutoff.training_cutoff:str,results/E12_llm.json,by_training_cutoff.training_cutoff,str,2025-07
+E12_llm:second_model.by_training_cutoff.training_cutoff:str,results/E12_llm.json,second_model.by_training_cutoff.training_cutoff,str,2026-06
+E12_llm:usage.cost_usd:num,results/E12_llm.json,usage.cost_usd,num,4.84
+E12_llm:second_model.usage.cost_usd:num,results/E12_llm.json,second_model.usage.cost_usd,num,11.70
+E02_measurement:n_headlines:int,results/E02_measurement.json,n_headlines,int,"125,105"
+E02_measurement:a_scorer_agreement.headline_level.finbert~clf.pearson:num,results/E02_measurement.json,a_scorer_agreement.headline_level.finbert~clf.pearson,num,0.35
+E02_measurement:a_scorer_agreement.headline_level.lm~finbert.pearson:num,results/E02_measurement.json,a_scorer_agreement.headline_level.lm~finbert.pearson,num,0.45
+E02_measurement:a_scorer_agreement.headline_level.vader~finbert.pearson:num,results/E02_measurement.json,a_scorer_agreement.headline_level.vader~finbert.pearson,num,0.41
+E02_measurement:a_scorer_agreement.headline_level.finbert~gdelt_tone.pearson:num,results/E02_measurement.json,a_scorer_agreement.headline_level.finbert~gdelt_tone.pearson,num,0.33
+E02_measurement:a_scorer_agreement.month_level.finbert~clf.n:int,results/E02_measurement.json,a_scorer_agreement.month_level.finbert~clf.n,int,138
+E02_measurement:a_scorer_agreement.month_level.finbert~clf.pearson:num,results/E02_measurement.json,a_scorer_agreement.month_level.finbert~clf.pearson,num,0.43
+E02_measurement:a_scorer_agreement.month_level.lm~finbert.pearson:num,results/E02_measurement.json,a_scorer_agreement.month_level.lm~finbert.pearson,num,0.74
+E02_measurement:a_scorer_agreement.month_level.vader~finbert.pearson:num,results/E02_measurement.json,a_scorer_agreement.month_level.vader~finbert.pearson,num,0.54
+E02_measurement:b_url_headline_vs_title.headline_level.finbert.n:int,results/E02_measurement.json,b_url_headline_vs_title.headline_level.finbert.n,int,"66,805"
+E02_measurement:b_url_headline_vs_title.headline_level.finbert.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.headline_level.finbert.pearson,num,0.86
+E02_measurement:b_url_headline_vs_title.headline_level.lm.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.headline_level.lm.pearson,num,0.92
+E02_measurement:b_url_headline_vs_title.headline_level.vader.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.headline_level.vader.pearson,num,0.90
+E02_measurement:b_url_headline_vs_title.headline_level.clf.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.headline_level.clf.pearson,num,0.87
+E02_measurement:b_url_headline_vs_title.month_level.finbert.n:int,results/E02_measurement.json,b_url_headline_vs_title.month_level.finbert.n,int,83
+E02_measurement:b_url_headline_vs_title.month_level.finbert.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.month_level.finbert.pearson,num,0.96
+E02_measurement:b_url_headline_vs_title.month_level.lm.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.month_level.lm.pearson,num,0.98
+E02_measurement:b_url_headline_vs_title.month_level.vader.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.month_level.vader.pearson,num,0.99
+E02_measurement:b_url_headline_vs_title.month_level.clf.pearson:num,results/E02_measurement.json,b_url_headline_vs_title.month_level.clf.pearson,num,0.97
+E02_measurement:b_url_headline_vs_title.share_url_headline_equal_to_normalised_title:pct1,results/E02_measurement.json,b_url_headline_vs_title.share_url_headline_equal_to_normalised_title,pct1,41.1
+E02_measurement:c_split_half.by_index.finbert.n:int,results/E02_measurement.json,c_split_half.by_index.finbert.n,int,137
+E02_measurement:c_split_half.by_index.finbert.spearman_brown:num,results/E02_measurement.json,c_split_half.by_index.finbert.spearman_brown,num,0.79
+E02_measurement:c_split_half.by_index.clf.spearman_brown:num,results/E02_measurement.json,c_split_half.by_index.clf.spearman_brown,num,0.63
+E02_measurement:c_split_half.by_index.lm.spearman_brown:num,results/E02_measurement.json,c_split_half.by_index.lm.spearman_brown,num,0.86
+E02_measurement:c_split_half.by_index.vader.spearman_brown:num,results/E02_measurement.json,c_split_half.by_index.vader.spearman_brown,num,0.87
+E02_measurement:c_split_half.by_index.gdelt_tone.spearman_brown:num,results/E02_measurement.json,c_split_half.by_index.gdelt_tone.spearman_brown,num,0.92
+E02_measurement:d_external.composite.level~sffed_nsi.n:int,results/E02_measurement.json,d_external.composite.level~sffed_nsi.n,int,138
+E02_measurement:d_external.composite.level~sffed_nsi.pearson:num,results/E02_measurement.json,d_external.composite.level~sffed_nsi.pearson,num,0.48
+E02_measurement:d_external.composite.level~ics.pearson:num,results/E02_measurement.json,d_external.composite.level~ics.pearson,num,0.05
+E02_measurement:d_external.composite.level~epu.pearson:num,results/E02_measurement.json,d_external.composite.level~epu.pearson,num,-0.35
+E02_measurement:d_external.composite.diff~diff_sffed_nsi.pearson:num,results/E02_measurement.json,d_external.composite.diff~diff_sffed_nsi.pearson,num,0.14
+E02_measurement:d_external.composite.diff~diff_ics.pearson:num,results/E02_measurement.json,d_external.composite.diff~diff_ics.pearson,num,0.17
+E02_measurement:d_external.composite.level~ret_same_month.pearson:num,results/E02_measurement.json,d_external.composite.level~ret_same_month.pearson,num,0.19
+E02_measurement:d_external.composite.level~ret_next_month.pearson:num,results/E02_measurement.json,d_external.composite.level~ret_next_month.pearson,num,-0.15
+E02_measurement:d_external.composite.level~ics_change_same_month.pearson:num,results/E02_measurement.json,d_external.composite.level~ics_change_same_month.pearson,num,0.29
+E02_measurement:d_external.composite.level~ics_change_next_month.pearson:num,results/E02_measurement.json,d_external.composite.level~ics_change_next_month.pearson,num,0.10
+E02_measurement:e_labelled_data.clf_5fold.accuracy_mean:pct1,results/E02_measurement.json,e_labelled_data.clf_5fold.accuracy_mean,pct1,76.2
+E02_measurement:e_labelled_data.clf_5fold.macro_f1_mean:pct1,results/E02_measurement.json,e_labelled_data.clf_5fold.macro_f1_mean,pct1,66.8
+E02_measurement:e_labelled_data.lm.accuracy:pct1,results/E02_measurement.json,e_labelled_data.lm.accuracy,pct1,63.2
+E02_measurement:e_labelled_data.vader.accuracy:pct1,results/E02_measurement.json,e_labelled_data.vader.accuracy,pct1,54.3
+E02_measurement:e_labelled_data.finbert.accuracy:pct1,results/E02_measurement.json,e_labelled_data.finbert.accuracy,pct1,88.9
+E02_measurement:e_labelled_data.majority_class_share:pct1,results/E02_measurement.json,e_labelled_data.majority_class_share,pct1,59.4
+r2:E03_sp500_return:results.baselines.M1_vs_M0,results/E03_sp500_return.json,results.baselines.M1_vs_M0,r2,"-2.61% (90% interval -8.57% to 3.62%, p = 0.604, n = 90)"
+r2:E03_sp500_return:results.composite.M2_vs_M0,results/E03_sp500_return.json,results.composite.M2_vs_M0,r2,"1.03% (90% interval -2.44% to 4.80%, p = 0.149, n = 90)"
+r2:E03_sp500_return:results.composite.M3_vs_M1,results/E03_sp500_return.json,results.composite.M3_vs_M1,r2,"1.21% (90% interval -1.97% to 4.41%, p = 0.115, n = 90)"
+r2:E03_sp500_return:results.finbert.M2_vs_M0,results/E03_sp500_return.json,results.finbert.M2_vs_M0,r2,"-0.62% (90% interval -2.56% to 1.18%, p = 0.542, n = 90)"
+r2:E03_sp500_return:results.clf.M2_vs_M0,results/E03_sp500_return.json,results.clf.M2_vs_M0,r2,"-1.31% (90% interval -3.12% to 0.89%, p = 0.737, n = 90)"
+r2:E03_sp500_return:results.lm.M2_vs_M0,results/E03_sp500_return.json,results.lm.M2_vs_M0,r2,"0.49% (90% interval -4.25% to 4.07%, p = 0.134, n = 90)"
+r2:E03_sp500_return:results.vader.M2_vs_M0,results/E03_sp500_return.json,results.vader.M2_vs_M0,r2,"0.92% (90% interval -2.62% to 4.80%, p = 0.170, n = 90)"
+r2:E03_sp500_return:results.gdelt_tone.M2_vs_M0,results/E03_sp500_return.json,results.gdelt_tone.M2_vs_M0,r2,"-0.68% (90% interval -4.27% to 3.23%, p = 0.392, n = 90)"
+E03_sp500_return:decision.outcome:str,results/E03_sp500_return.json,decision.outcome,str,null
+E04_sp500_direction:results.baselines.L0.hit_rate:pct1,results/E04_sp500_direction.json,results.baselines.L0.hit_rate,pct1,63.3
+E04_sp500_direction:results.baselines.L0.share_up_predicted:pct1,results/E04_sp500_direction.json,results.baselines.L0.share_up_predicted,pct1,100.0
+hit:E04_sp500_direction:results.baselines.L1,results/E04_sp500_direction.json,results.baselines.L1,hit,"62.2% (90% interval 55.6% to 68.9%), base rate 63.3%, PT p = 0.779, n = 90"
+hit:E04_sp500_direction:results.composite.L2,results/E04_sp500_direction.json,results.composite.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+E04_sp500_direction:results.composite.L2.brier:num4,results/E04_sp500_direction.json,results.composite.L2.brier,num4,0.2377
+E04_sp500_direction:results.composite.L2.brier_base:num4,results/E04_sp500_direction.json,results.composite.L2.brier_base,num4,0.2369
+E04_sp500_direction:results.composite.L2.dm_brier_p:p,results/E04_sp500_direction.json,results.composite.L2.dm_brier_p,p,0.818
+hit:E04_sp500_direction:results.finbert.L2,results/E04_sp500_direction.json,results.finbert.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+hit:E04_sp500_direction:results.clf.L2,results/E04_sp500_direction.json,results.clf.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+hit:E04_sp500_direction:results.lm.L2,results/E04_sp500_direction.json,results.lm.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+hit:E04_sp500_direction:results.vader.L2,results/E04_sp500_direction.json,results.vader.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"
+E04_sp500_direction:decision.outcome:str,results/E04_sp500_direction.json,decision.outcome,str,null
+r2:E05_ics_change:results.baselines.M1_vs_M0,results/E05_ics_change.json,results.baselines.M1_vs_M0,r2,"-6.37% (90% interval -14.12% to 1.17%, p = 0.796, n = 90)"
+r2:E05_ics_change:results.composite.M2_vs_M0,results/E05_ics_change.json,results.composite.M2_vs_M0,r2,"-1.81% (90% interval -7.85% to 3.10%, p = 0.450, n = 90)"
+r2:E05_ics_change:results.composite.M3_vs_M1,results/E05_ics_change.json,results.composite.M3_vs_M1,r2,"-1.35% (90% interval -9.19% to 4.49%, p = 0.387, n = 90)"
+r2:E05_ics_change:results.finbert.M2_vs_M0,results/E05_ics_change.json,results.finbert.M2_vs_M0,r2,"-1.23% (90% interval -5.25% to 1.92%, p = 0.483, n = 90)"
+r2:E05_ics_change:results.clf.M2_vs_M0,results/E05_ics_change.json,results.clf.M2_vs_M0,r2,"0.01% (90% interval -4.58% to 3.87%, p = 0.331, n = 90)"
+r2:E05_ics_change:results.lm.M2_vs_M0,results/E05_ics_change.json,results.lm.M2_vs_M0,r2,"-0.12% (90% interval -3.80% to 3.11%, p = 0.287, n = 90)"
+r2:E05_ics_change:results.vader.M2_vs_M0,results/E05_ics_change.json,results.vader.M2_vs_M0,r2,"1.13% (90% interval -3.96% to 5.31%, p = 0.120, n = 90)"
+r2:E05_ics_change:results.gdelt_tone.M2_vs_M0,results/E05_ics_change.json,results.gdelt_tone.M2_vs_M0,r2,"-2.16% (90% interval -7.34% to 2.16%, p = 0.469, n = 90)"
+E05_ics_change:decision.outcome:str,results/E05_ics_change.json,decision.outcome,str,null
+E06_published:sample.n_oos:int,results/E06_published.json,sample.n_oos,int,439
+E06_published:sample.first_oos_target:str,results/E06_published.json,sample.first_oos_target,str,1990-03
+E06_published:sample.last_oos_target:str,results/E06_published.json,sample.last_oos_target,str,2026-09
+r2:E06_published:results.long.sp500_return.sffed_nsi.M2_vs_M0,results/E06_published.json,results.long.sp500_return.sffed_nsi.M2_vs_M0,r2,"-0.79% (90% interval -1.98% to 0.36%, p = 0.516, n = 439)"
+r2:E06_published:results.long.sp500_return.epu.M2_vs_M0,results/E06_published.json,results.long.sp500_return.epu.M2_vs_M0,r2,"-0.34% (90% interval -3.23% to 2.67%, p = 0.002, n = 439)"
+r2:E06_published:results.long.sp500_return.ics_level.M2_vs_M0,results/E06_published.json,results.long.sp500_return.ics_level.M2_vs_M0,r2,"-0.55% (90% interval -1.10% to -0.03%, p = 0.915, n = 439)"
+hit:E06_published:results.long.sp500_direction.sffed_nsi.L2,results/E06_published.json,results.long.sp500_direction.sffed_nsi.L2,hit,"62.6% (90% interval 58.8% to 66.7%), base rate 63.8%, PT p = 0.532, n = 439"
+r2:E06_published:results.long.ics_change.sffed_nsi.M2_vs_M0,results/E06_published.json,results.long.ics_change.sffed_nsi.M2_vs_M0,r2,"-0.55% (90% interval -2.61% to 1.23%, p = 0.262, n = 439)"
+r2:E06_published:results.long.ics_change.sffed_nsi.M3_vs_M1,results/E06_published.json,results.long.ics_change.sffed_nsi.M3_vs_M1,r2,"-0.58% (90% interval -2.61% to 1.19%, p = 0.269, n = 439)"
+r2:E06_published:results.long.ics_change.epu.M3_vs_M1,results/E06_published.json,results.long.ics_change.epu.M3_vs_M1,r2,"-1.11% (90% interval -4.20% to 1.82%, p = 0.086, n = 439)"
+E06_published:text_window.n_oos:int,results/E06_published.json,text_window.n_oos,int,90
+r2:E06_published:results.text_window.sp500_return.sffed_nsi.M2_vs_M0,results/E06_published.json,results.text_window.sp500_return.sffed_nsi.M2_vs_M0,r2,"0.80% (90% interval -0.20% to 1.84%, p = 0.076, n = 90)"
+r2:E06_published:results.text_window.ics_change.sffed_nsi.M2_vs_M0,results/E06_published.json,results.text_window.ics_change.sffed_nsi.M2_vs_M0,r2,"0.23% (90% interval -1.21% to 1.99%, p = 0.337, n = 90)"
+r2:E06_published:results.text_window.ics_change.sffed_nsi.M3_vs_M1,results/E06_published.json,results.text_window.ics_change.sffed_nsi.M3_vs_M1,r2,"0.37% (90% interval -1.06% to 2.15%, p = 0.300, n = 90)"
+r2:E07_incremental:results.sp500_return.a_sffed,results/E07_incremental.json,results.sp500_return.a_sffed,r2,"-0.79% (90% interval -3.25% to 1.86%, p = 0.594, n = 90)"
+r2:E07_incremental:results.sp500_return.b_all_published,results/E07_incremental.json,results.sp500_return.b_all_published,r2,"-0.94% (90% interval -2.74% to 1.34%, p = 0.660, n = 90)"
+r2:E07_incremental:results.ics_change.a_sffed,results/E07_incremental.json,results.ics_change.a_sffed,r2,"0.46% (90% interval -9.00% to 7.39%, p = 0.152, n = 90)"
+r2:E07_incremental:results.ics_change.b_all_published,results/E07_incremental.json,results.ics_change.b_all_published,r2,"0.30% (90% interval -8.92% to 6.65%, p = 0.178, n = 90)"
+r2:E07_incremental:results.ics_change.c_lagged_sp500_return,results/E07_incremental.json,results.ics_change.c_lagged_sp500_return,r2,"-1.27% (90% interval -4.24% to 1.28%, p = 0.617, n = 90)"
+r2:E08_estimation:results.initial_36.sp500_return.composite.M2_vs_M0,results/E08_estimation.json,results.initial_36.sp500_return.composite.M2_vs_M0,r2,"0.75% (90% interval -2.68% to 4.09%, p = 0.142, n = 102)"
+r2:E08_estimation:results.initial_36.ics_change.composite.M3_vs_M1,results/E08_estimation.json,results.initial_36.ics_change.composite.M3_vs_M1,r2,"-0.43% (90% interval -6.77% to 4.70%, p = 0.264, n = 102)"
+E08_estimation:results.initial_36.decisions.sp500_return.outcome:str,results/E08_estimation.json,results.initial_36.decisions.sp500_return.outcome,str,null
+E08_estimation:results.initial_36.decisions.sp500_direction.outcome:str,results/E08_estimation.json,results.initial_36.decisions.sp500_direction.outcome,str,null
+E08_estimation:results.initial_36.decisions.ics_change.outcome:str,results/E08_estimation.json,results.initial_36.decisions.ics_change.outcome,str,null
+r2:E08_estimation:results.initial_60.sp500_return.composite.M2_vs_M0,results/E08_estimation.json,results.initial_60.sp500_return.composite.M2_vs_M0,r2,"2.14% (90% interval -2.36% to 6.68%, p = 0.062, n = 78)"
+r2:E08_estimation:results.initial_60.ics_change.composite.M3_vs_M1,results/E08_estimation.json,results.initial_60.ics_change.composite.M3_vs_M1,r2,"-2.94% (90% interval -10.61% to 2.86%, p = 0.536, n = 78)"
+E08_estimation:results.initial_60.decisions.sp500_return.outcome:str,results/E08_estimation.json,results.initial_60.decisions.sp500_return.outcome,str,null
+E08_estimation:results.initial_60.decisions.sp500_direction.outcome:str,results/E08_estimation.json,results.initial_60.decisions.sp500_direction.outcome,str,null
+E08_estimation:results.initial_60.decisions.ics_change.outcome:str,results/E08_estimation.json,results.initial_60.decisions.ics_change.outcome,str,null
+r2:E08_estimation:results.rolling_48.sp500_return.composite.M2_vs_M0,results/E08_estimation.json,results.rolling_48.sp500_return.composite.M2_vs_M0,r2,"0.97% (90% interval -2.73% to 4.77%, p = 0.153, n = 90)"
+r2:E08_estimation:results.rolling_48.ics_change.composite.M3_vs_M1,results/E08_estimation.json,results.rolling_48.ics_change.composite.M3_vs_M1,r2,"-1.33% (90% interval -10.32% to 5.23%, p = 0.301, n = 90)"
+E08_estimation:results.rolling_48.decisions.sp500_return.outcome:str,results/E08_estimation.json,results.rolling_48.decisions.sp500_return.outcome,str,null
+E08_estimation:results.rolling_48.decisions.sp500_direction.outcome:str,results/E08_estimation.json,results.rolling_48.decisions.sp500_direction.outcome,str,null
+E08_estimation:results.rolling_48.decisions.ics_change.outcome:str,results/E08_estimation.json,results.rolling_48.decisions.ics_change.outcome,str,null
+r2:E09_index_definition:results.a_first_difference.sp500_return.composite.M2_vs_M0,results/E09_index_definition.json,results.a_first_difference.sp500_return.composite.M2_vs_M0,r2,"-1.72% (90% interval -3.71% to 0.26%, p = 0.889, n = 89)"
+r2:E09_index_definition:results.a_first_difference.ics_change.composite.M3_vs_M1,results/E09_index_definition.json,results.a_first_difference.ics_change.composite.M3_vs_M1,r2,"1.32% (90% interval -4.77% to 5.91%, p = 0.092, n = 89)"
+r2:E09_index_definition:results.b_headline_weighted.sp500_return.composite.M2_vs_M0,results/E09_index_definition.json,results.b_headline_weighted.sp500_return.composite.M2_vs_M0,r2,"-0.06% (90% interval -4.00% to 4.12%, p = 0.253, n = 90)"
+r2:E09_index_definition:results.b_headline_weighted.ics_change.composite.M3_vs_M1,results/E09_index_definition.json,results.b_headline_weighted.ics_change.composite.M3_vs_M1,r2,"-1.24% (90% interval -10.70% to 6.08%, p = 0.324, n = 90)"
+E09_index_definition:title_months.0:str,results/E09_index_definition.json,title_months.0,str,2019-10
+E09_index_definition:title_months.1:str,results/E09_index_definition.json,title_months.1,str,2026-08
+r2:E09_index_definition:results.c_title_index.sp500_return.composite.M2_vs_M0,results/E09_index_definition.json,results.c_title_index.sp500_return.composite.M2_vs_M0,r2,"2.14% (90% interval -7.50% to 10.43%, p = 0.175, n = 47)"
+r2:E09_index_definition:results.c_title_index.ics_change.composite.M3_vs_M1,results/E09_index_definition.json,results.c_title_index.ics_change.composite.M3_vs_M1,r2,"-1.17% (90% interval -6.15% to 3.49%, p = 0.533, n = 47)"
+r2:E09_index_definition:results.d_url_index_same_months.sp500_return.composite.M2_vs_M0,results/E09_index_definition.json,results.d_url_index_same_months.sp500_return.composite.M2_vs_M0,r2,"1.59% (90% interval -7.46% to 9.15%, p = 0.191, n = 47)"
+r2:E09_index_definition:results.d_url_index_same_months.ics_change.composite.M3_vs_M1,results/E09_index_definition.json,results.d_url_index_same_months.ics_change.composite.M3_vs_M1,r2,"-1.73% (90% interval -6.15% to 2.34%, p = 0.619, n = 47)"
+r2:E10_target_definition:results.a_raw_log_return.results.composite.M2_vs_M0,results/E10_target_definition.json,results.a_raw_log_return.results.composite.M2_vs_M0,r2,"0.92% (90% interval -2.67% to 4.61%, p = 0.160, n = 90)"
+r2:E10_target_definition:results.b_simple_excess_return.results.composite.M2_vs_M0,results/E10_target_definition.json,results.b_simple_excess_return.results.composite.M2_vs_M0,r2,"1.33% (90% interval -2.33% to 5.25%, p = 0.117, n = 90)"
+r2:E10_target_definition:results.c_ics_own_lag_release_lag_1.results.composite.M3_vs_M1,results/E10_target_definition.json,results.c_ics_own_lag_release_lag_1.results.composite.M3_vs_M1,r2,"-1.90% (90% interval -8.43% to 3.58%, p = 0.373, n = 88)"
+E11_horizon3:sample.n_oos:int,results/E11_horizon3.json,sample.n_oos,int,86
+r2:E11_horizon3:results.sp500_return_3m.results.composite.M2_vs_M0,results/E11_horizon3.json,results.sp500_return_3m.results.composite.M2_vs_M0,r2,"5.69% (90% interval -8.70% to 16.02%, p = 0.049, n = 86)"
+E11_horizon3:results.sp500_return_3m.decision.outcome:str,results/E11_horizon3.json,results.sp500_return_3m.decision.outcome,str,mixed
+r2:E11_horizon3:results.ics_change_3m.results.composite.M3_vs_M1,results/E11_horizon3.json,results.ics_change_3m.results.composite.M3_vs_M1,r2,"-0.30% (90% interval -2.33% to 2.16%, p = 0.449, n = 86)"
+E11_horizon3:results.ics_change_3m.decision.outcome:str,results/E11_horizon3.json,results.ics_change_3m.decision.outcome,str,null
+power:config.reps:int,results/power.json,config.reps,int,"10,000"
+power:results.sp500_return.at_zero.power:pct1,results/power.json,results.sp500_return.at_zero.power,pct1,3.2
+power:results.sp500_return.selected.r2_1pct.power:pct1,results/power.json,results.sp500_return.selected.r2_1pct.power,pct1,14.3
+power:results.sp500_return.selected.r2_2pct.power:pct1,results/power.json,results.sp500_return.selected.r2_2pct.power,pct1,26.9
+power:results.sp500_return.selected.r2_5pct.power:pct1,results/power.json,results.sp500_return.selected.r2_5pct.power,pct1,61.3
+power:results.sp500_return.smallest_r2.power_50:pct1,results/power.json,results.sp500_return.smallest_r2.power_50,pct1,4.0
+power:results.sp500_return.smallest_r2.power_80:pct1,results/power.json,results.sp500_return.smallest_r2.power_80,pct1,8.0
+power:results.ics_change.at_zero.power:pct1,results/power.json,results.ics_change.at_zero.power,pct1,3.4
+power:results.ics_change.selected.r2_1pct.power:pct1,results/power.json,results.ics_change.selected.r2_1pct.power,pct1,14.1
+power:results.ics_change.selected.r2_5pct.power:pct1,results/power.json,results.ics_change.selected.r2_5pct.power,pct1,61.3
+power:results.ics_change.smallest_r2.power_80:pct1,results/power.json,results.ics_change.smallest_r2.power_80,pct1,8.0
+E12_llm:usage.model:str,results/E12_llm.json,usage.model,str,claude-haiku-4-5
+E12_llm:index_months_with_llm_index:int,results/E12_llm.json,index_months_with_llm_index,int,138
+E12_llm:sample.n_origins:int,results/E12_llm.json,sample.n_origins,int,138
+r2:E12_llm:results.sp500_return.llm.M2_vs_M0,results/E12_llm.json,results.sp500_return.llm.M2_vs_M0,r2,"-1.51% (90% interval -7.06% to 3.40%, p = 0.459, n = 90)"
+hit:E12_llm:results.sp500_direction.llm.L2,results/E12_llm.json,results.sp500_direction.llm.L2,hit,"62.2% (90% interval 55.6% to 68.9%), base rate 63.3%, PT p = 0.779, n = 90"
+r2:E12_llm:results.ics_change.llm.M2_vs_M0,results/E12_llm.json,results.ics_change.llm.M2_vs_M0,r2,"0.37% (90% interval -4.13% to 4.97%, p = 0.185, n = 90)"
+r2:E12_llm:results.ics_change.llm.M3_vs_M1,results/E12_llm.json,results.ics_change.llm.M3_vs_M1,r2,"0.71% (90% interval -4.29% to 4.73%, p = 0.183, n = 90)"
+E12_llm:by_training_cutoff.training_cutoff:str,results/E12_llm.json,by_training_cutoff.training_cutoff,str,2025-07
+E12_llm:by_training_cutoff.post_cutoff.first_origin:str,results/E12_llm.json,by_training_cutoff.post_cutoff.first_origin,str,2025-09
+E12_llm:by_training_cutoff.post_cutoff.n_test_origins:int,results/E12_llm.json,by_training_cutoff.post_cutoff.n_test_origins,int,12
+r2:E12_llm:by_training_cutoff.post_cutoff.results.sp500_return.llm.M2_vs_M0,results/E12_llm.json,by_training_cutoff.post_cutoff.results.sp500_return.llm.M2_vs_M0,r2,"4.31% (90% interval -18.37% to 7.31%, p = 0.216, n = 12)"
+hit:E12_llm:by_training_cutoff.post_cutoff.results.sp500_direction.llm.L2,results/E12_llm.json,by_training_cutoff.post_cutoff.results.sp500_direction.llm.L2,hit,"50.0% (90% interval 41.7% to 58.3%), base rate 50.0%, PT p = n/a, n = 12"
+r2:E12_llm:by_training_cutoff.post_cutoff.results.ics_change.llm.M3_vs_M1,results/E12_llm.json,by_training_cutoff.post_cutoff.results.ics_change.llm.M3_vs_M1,r2,"11.41% (90% interval 6.14% to 21.08%, p = 0.019, n = 12)"
+E12_llm:by_training_cutoff.pre_cutoff.n_test_origins:int,results/E12_llm.json,by_training_cutoff.pre_cutoff.n_test_origins,int,78
+r2:E12_llm:by_training_cutoff.pre_cutoff.results.sp500_return.llm.M2_vs_M0,results/E12_llm.json,by_training_cutoff.pre_cutoff.results.sp500_return.llm.M2_vs_M0,r2,"-1.98% (90% interval -7.73% to 3.20%, p = 0.511, n = 78)"
+r2:E12_llm:by_training_cutoff.pre_cutoff.results.ics_change.llm.M3_vs_M1,results/E12_llm.json,by_training_cutoff.pre_cutoff.results.ics_change.llm.M3_vs_M1,r2,"-0.05% (90% interval -5.77% to 4.09%, p = 0.262, n = 78)"
+E12_llm:second_model.usage.model:str,results/E12_llm.json,second_model.usage.model,str,claude-sonnet-5-5
+E12_llm:second_model.index_months_with_llm_index:int,results/E12_llm.json,second_model.index_months_with_llm_index,int,138
+E12_llm:second_model.sample.n_origins:int,results/E12_llm.json,second_model.sample.n_origins,int,138
+r2:E12_llm:second_model.results.sp500_return.llm.M2_vs_M0,results/E12_llm.json,second_model.results.sp500_return.llm.M2_vs_M0,r2,"-1.86% (90% interval -5.51% to 1.55%, p = 0.637, n = 90)"
+hit:E12_llm:second_model.results.sp500_direction.llm.L2,results/E12_llm.json,second_model.results.sp500_direction.llm.L2,hit,"62.2% (90% interval 55.6% to 68.9%), base rate 63.3%, PT p = 0.779, n = 90"
+r2:E12_llm:second_model.results.ics_change.llm.M2_vs_M0,results/E12_llm.json,second_model.results.ics_change.llm.M2_vs_M0,r2,"0.29% (90% interval -4.29% to 4.72%, p = 0.193, n = 90)"
+r2:E12_llm:second_model.results.ics_change.llm.M3_vs_M1,results/E12_llm.json,second_model.results.ics_change.llm.M3_vs_M1,r2,"0.72% (90% interval -4.48% to 4.80%, p = 0.184, n = 90)"
+E12_llm:second_model.by_training_cutoff.training_cutoff:str,results/E12_llm.json,second_model.by_training_cutoff.training_cutoff,str,2026-06
+E12_llm:second_model.by_training_cutoff.post_cutoff.n_test_origins:int,results/E12_llm.json,second_model.by_training_cutoff.post_cutoff.n_test_origins,int,1
+r2:E12_llm:second_model.by_training_cutoff.post_cutoff.results.sp500_return.llm.M2_vs_M0,results/E12_llm.json,second_model.by_training_cutoff.post_cutoff.results.sp500_return.llm.M2_vs_M0,r2,n/a
+E03_sp500_return:sample.n_oos:int,results/E03_sp500_return.json,sample.n_oos,int,90
+E01_corpus:source_mix.share_of_year_b_headlines_from_domains_seen_in_year_a:pct1,results/E01_corpus.json,source_mix.share_of_year_b_headlines_from_domains_seen_in_year_a,pct1,54.5
+E01_corpus:source_mix.year_b:str,results/E01_corpus.json,source_mix.year_b,str,2025
+E01_corpus:source_mix.year_a:str,results/E01_corpus.json,source_mix.year_a,str,2015
+E01_corpus:source_mix.top20_domains_in_common:int,results/E01_corpus.json,source_mix.top20_domains_in_common,int,3
+E01_corpus:files.days_with_no_file:int,results/E01_corpus.json,files.days_with_no_file,int,17
+E01_corpus:files.days_with_one_file:int,results/E01_corpus.json,files.days_with_one_file,int,0
+E01_corpus:valid_days_per_index_month.month_of_min:str,results/E01_corpus.json,valid_days_per_index_month.month_of_min,str,2025-06
+E01_corpus:valid_days_per_index_month.min:int,results/E01_corpus.json,valid_days_per_index_month.min,int,16
+E12_llm:by_training_cutoff.post_cutoff.n_test_origins:int,results/E12_llm.json,by_training_cutoff.post_cutoff.n_test_origins,int,12
+E12_llm:second_model.by_training_cutoff.post_cutoff.n_test_origins:int,results/E12_llm.json,second_model.by_training_cutoff.post_cutoff.n_test_origins,int,1
+E03_sp500_return:decision.outcome:str,results/E03_sp500_return.json,decision.outcome,str,null
+E04_sp500_direction:decision.outcome:str,results/E04_sp500_direction.json,decision.outcome,str,null
+E05_ics_change:decision.outcome:str,results/E05_ics_change.json,decision.outcome,str,null

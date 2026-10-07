@@ -1,0 +1,14 @@
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ &  &  & \multicolumn{2}{c}{URL vs title} & \multicolumn{2}{c}{Published series} & \multicolumn{2}{c}{S\&P 500 return} \\
+\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Index & Zero (\%) & Split-half & Headline & Month & SF Fed & ICS & Same month & Next month \\
+\midrule
+FinBERT & 0.0 & 0.79 & 0.86 & 0.96 & 0.41 & $-$0.02 & 0.20 & $-$0.09 \\
+Classifier & 0.0 & 0.63 & 0.87 & 0.97 & 0.13 & 0.14 & 0.11 & $-$0.07 \\
+LM lexicon & 62.6 & 0.86 & 0.92 & 0.98 & 0.49 & 0.15 & 0.07 & $-$0.15 \\
+VADER & 38.2 & 0.87 & 0.90 & 0.99 & 0.37 & $-$0.11 & 0.17 & $-$0.14 \\
+GDELT tone & 4.1 & 0.92 & n/a & n/a & 0.60 & 0.01 & 0.18 & $-$0.13 \\
+Composite & n/a & n/a & n/a & n/a & 0.48 & 0.05 & 0.19 & $-$0.15 \\
+\bottomrule
+\end{tabular}

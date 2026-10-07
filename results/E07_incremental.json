@@ -1,0 +1,162 @@
+{
+ "result": "E07_incremental",
+ "git_commit": "7f9ae0b2281ba8c6dca1e48388f33c356b6a37ce",
+ "config_sha256_12": "ae7d4fb30e64",
+ "generated_utc": "2026-10-06T22:54:54Z",
+ "config": {
+  "seed": 20261006,
+  "sample": {
+   "corpus_start": "2015-02-19",
+   "corpus_end": "2026-09-30",
+   "first_index_month": "2015-03",
+   "last_target_month": "2026-09",
+   "initial_window": 48,
+   "long_initial_window": 120,
+   "long_first_target_month": "1980-03"
+  },
+  "index": {
+   "min_headlines_per_day": 5,
+   "min_days_per_month": 15,
+   "title_month_min_share": 0.95,
+   "composite_members": [
+    "lm",
+    "vader",
+    "finbert",
+    "clf"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 10000,
+   "bootstrap_mean_block": 6,
+   "ci_level": 0.9,
+   "alpha": 0.05,
+   "horizons": [
+    1,
+    3
+   ]
+  },
+  "release_lag_months": {
+   "ics": {
+    "sp500": 1,
+    "ics": 0
+   },
+   "sp500_return": {
+    "sp500": 0,
+    "ics": 0
+   },
+   "epu": {
+    "sp500": 1,
+    "ics": 1
+   }
+  },
+  "publication_lag_days": {
+   "sffed_nsi": 7
+  },
+  "note": "benchmark = constant + controls; model = benchmark + composite; ICS models keep the own lag"
+ },
+ "experiment": "E07",
+ "name": "incremental",
+ "sample": {
+  "first_origin": "2015-03",
+  "last_origin": "2026-08",
+  "n_origins": 138,
+  "initial_window": 48,
+  "horizon": 1,
+  "n_oos": 90,
+  "first_oos_target": "2019-04",
+  "last_oos_target": "2026-09"
+ },
+ "added_predictor": "composite",
+ "results": {
+  "sp500_return": {
+   "a_sffed": {
+    "n_oos": 90,
+    "rmse_model": 4.727812289420052,
+    "rmse_bench": 4.709276687074932,
+    "mae_model": 3.7409188491121395,
+    "mae_bench": 3.7017973268304285,
+    "r2_os": -0.007887444899409068,
+    "r2_ci_lo": -0.03247957672674336,
+    "r2_ci_hi": 0.018585879398713787,
+    "test": "clark_west_one_sided",
+    "stat": -0.23763425739370309,
+    "p": 0.5939176110363021,
+    "controls": [
+     "sffed_nsi"
+    ]
+   },
+   "b_all_published": {
+    "n_oos": 90,
+    "rmse_model": 4.901760588848665,
+    "rmse_bench": 4.87887578882845,
+    "mae_model": 3.8542885998530902,
+    "mae_bench": 3.826486831759128,
+    "r2_os": -0.009403179177387644,
+    "r2_ci_lo": -0.027356386480563002,
+    "r2_ci_hi": 0.01344831933899912,
+    "test": "clark_west_one_sided",
+    "stat": -0.41172887973878236,
+    "p": 0.659730922604262,
+    "controls": [
+     "sffed_nsi",
+     "epu_for_sp500",
+     "ics_level_for_sp500"
+    ]
+   }
+  },
+  "ics_change": {
+   "a_sffed": {
+    "n_oos": 90,
+    "rmse_model": 5.031689949950692,
+    "rmse_bench": 5.04326811851975,
+    "mae_model": 3.8809967927456284,
+    "mae_bench": 3.9223440776117937,
+    "r2_os": 0.004586263473826069,
+    "r2_ci_lo": -0.08999144164108655,
+    "r2_ci_hi": 0.07386971985702032,
+    "test": "clark_west_one_sided",
+    "stat": 1.0293726840879993,
+    "p": 0.15165229003617053,
+    "controls": [
+     "lag_ics_change",
+     "sffed_nsi"
+    ]
+   },
+   "b_all_published": {
+    "n_oos": 90,
+    "rmse_model": 5.135338484748879,
+    "rmse_bench": 5.1431473288096585,
+    "mae_model": 3.9644854123604927,
+    "mae_bench": 3.999974554864373,
+    "r2_os": 0.0030342961129917745,
+    "r2_ci_lo": -0.08921539561498287,
+    "r2_ci_hi": 0.06649598211738733,
+    "test": "clark_west_one_sided",
+    "stat": 0.921579265017437,
+    "p": 0.17837403909295568,
+    "controls": [
+     "lag_ics_change",
+     "sffed_nsi",
+     "epu_for_ics"
+    ]
+   },
+   "c_lagged_sp500_return": {
+    "n_oos": 90,
+    "rmse_model": 4.630472061943233,
+    "rmse_bench": 4.6013663509157485,
+    "mae_model": 3.682775092810658,
+    "mae_bench": 3.6238848499467053,
+    "r2_os": -0.012690910549222556,
+    "r2_ci_lo": -0.04244234645010164,
+    "r2_ci_hi": 0.012812946470702155,
+    "test": "clark_west_one_sided",
+    "stat": -0.29811254081148914,
+    "p": 0.6171913648371588,
+    "controls": [
+     "lag_ics_change",
+     "lag_ret_excess_for_ics"
+    ]
+   }
+  }
+ }
+}

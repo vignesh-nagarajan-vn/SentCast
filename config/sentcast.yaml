@@ -1,0 +1,170 @@
+# SentCast configuration. Frozen together with PLAN.md.
+# Any change after the PLAN.md commit must be recorded in PLAN.md "Deviations".
+
+seed: 20261006
+
+sample:
+  corpus_start: "2015-02-19"       # first day of GDELT GKG 2.0
+  corpus_end: "2026-09-30"
+  first_index_month: "2015-03"     # first full index window
+  last_target_month: "2026-09"
+  initial_window: 48               # months in the first estimation window (text sample)
+  long_initial_window: 120         # months in the first estimation window (published indices)
+  long_first_target_month: "1980-03"  # first target month of the long sample
+
+gkg:
+  base_url: "https://data.gdeltproject.org/gdeltv2/"
+  files_per_day: 2                 # 15-minute files drawn per UTC day, without replacement
+  slots_per_day: 96
+  max_retries: 3
+  workers: 16
+  min_slug_words: 4
+  # V1Locations country code that marks US relevance
+  us_location_pattern: "#US#"
+  # press-release wires and similar; dropped before scoring
+  excluded_domains:
+    - prnewswire.com
+    - businesswire.com
+    - globenewswire.com
+    - openpr.com
+    - pr-inside.com
+    - einpresswire.com
+    - accesswire.com
+    - prweb.com
+    - marketwired.com
+    - newswire.com
+    - pr.com
+    - send2press.com
+    - 24-7pressrelease.com
+    - prlog.org
+    - webwire.com
+  # a headline is kept if it contains at least one term (whole words, lowercase slug text)
+  keywords:
+    - "econom\\w*"
+    - inflation
+    - deflation
+    - stagflation
+    - recession
+    - gdp
+    - unemployment
+    - jobless
+    - payrolls?
+    - layoffs?
+    - "jobs report"
+    - "jobs data"
+    - "job growth"
+    - "job market"
+    - "labor market"
+    - wages?
+    - "consumer (confidence|sentiment|spending|prices)"
+    - "retail sales"
+    - "housing (market|starts)"
+    - "home (sales|prices)"
+    - "mortgage rates?"
+    - "interest rates?"
+    - "rate (hike|cut)s?"
+    - "federal reserve"
+    - fed
+    - fomc
+    - tariffs?
+    - "trade (war|deal|deficit)"
+    - "budget deficit"
+    - "national debt"
+    - "debt (ceiling|limit)"
+    - "government shutdown"
+    - stimulus
+    - "(gas|oil) prices?"
+    - "cost of living"
+    - manufacturing
+    - "factory orders"
+    - "industrial production"
+    - "(treasury|bond) yields?"
+    - "yield curve"
+    - treasuries
+    - "stock market"
+    - stocks
+    - "wall street"
+    - dow
+    - nasdaq
+    - "s p 500"
+    - "sp 500"
+    - sp500
+    - markets
+    - investors
+    - "sell ?off"
+    - "(bear|bull) market"
+    - "stock futures"
+
+index:
+  min_headlines_per_day: 5
+  min_days_per_month: 15
+  title_month_min_share: 0.95      # E09: months whose kept headlines nearly all have a page title
+  composite_members: [lm, vader, finbert, clf]
+
+scorers:
+  lm:
+    # Loughran-McDonald_MasterDictionary_1993-2025.csv
+    dictionary_url: "https://drive.google.com/uc?export=download&id=1iq2RUf8qGFEAk1g8wQntP3habOnR3fXF"
+    dictionary_page: "https://sraf.nd.edu/loughranmcdonald-master-dictionary/"
+  finbert:
+    model: "ProsusAI/finbert"
+    revision: "main"
+    max_length: 64
+    batch_size: 256
+  clf:
+    train_url: "https://huggingface.co/datasets/takala/financial_phrasebank/resolve/main/data/FinancialPhraseBank-v1.0.zip"
+    train_file: "FinancialPhraseBank-v1.0/Sentences_50Agree.txt"
+    ngram_range: [1, 2]
+    min_df: 2
+    C: 1.0
+    cv_folds: 5
+  llm:
+    provider: anthropic
+    model: "claude-haiku-4-5"
+    env_key: "ANTHROPIC_API_KEY"
+    training_cutoff: "2025-07"     # training data cutoff in Anthropic's model table, read 2026-10-06
+    batch_size: 40                 # headlines per request; every kept headline is labelled
+    workers: 4                     # concurrent requests
+    max_cost_usd: 30.00            # hard cap across runs; the scorer stops when reached
+    second:                        # second model, a check that E12 is not specific to the first
+      model: "claude-sonnet-5-5"
+      training_cutoff: "2026-06"   # same table; leaves one test origin after the cutoff
+      effort: "low"                # this model always thinks; thinking is billed as output
+      max_tokens: 4096
+      max_cost_usd: 50.00
+
+sources:
+  # Welch-Goyal monthly predictor file (S&P 500 month-end index level through its last update)
+  goyal_xlsx: "https://docs.google.com/spreadsheets/d/1qwpl2R_DNujpU5YUkk8lacP1tTeMb9iJ/export?format=xlsx"
+  goyal_page: "https://sites.google.com/view/agoyal145"
+  fred_csv: "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}"
+  fred_sp500: "SP500"              # daily closes, last 10 years; extends the Goyal file
+  fred_tbill: "TB3MS"
+  fred_calendar: "NASDAQCOM"       # daily series used only for its trading dates
+  umich_ics_csv: "https://www.sca.isr.umich.edu/files/tbmics.csv"
+  sffed_xlsx: "https://www.frbsf.org/wp-content/uploads/news_sentiment_data.xlsx"
+  epu_xlsx: "https://www.policyuncertainty.com/media/US_Policy_Uncertainty_Data.xlsx"
+
+# Release lags. A monthly series value for reference month m may enter a forecast of
+# target month m+1+lag. Keys are (series -> target). A missing entry is an error.
+release_lag_months:
+  ics:
+    sp500: 1    # final ICS for month m can be released after the S&P forecast date
+    ics: 0      # ICS forecasts are dated at the final release of the month-m survey
+  sp500_return:
+    sp500: 0    # own lag; month-m close is the forecast date itself
+    ics: 0      # month-m close precedes the ICS forecast date
+  epu:
+    sp500: 1    # month-m index is published early in month m+1
+    ics: 1
+# Daily or weekly published series: observations dated on or after
+# (forecast date - lag days) are excluded.
+publication_lag_days:
+  sffed_nsi: 7    # updated weekly
+
+evaluation:
+  bootstrap_reps: 10000
+  bootstrap_mean_block: 6
+  ci_level: 0.90
+  alpha: 0.05
+  horizons: [1, 3]

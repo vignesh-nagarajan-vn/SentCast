@@ -1,0 +1,308 @@
+{
+ "result": "E04_sp500_direction",
+ "git_commit": "7f9ae0b2281ba8c6dca1e48388f33c356b6a37ce",
+ "config_sha256_12": "ae7d4fb30e64",
+ "generated_utc": "2026-10-06T22:54:36Z",
+ "config": {
+  "seed": 20261006,
+  "sample": {
+   "corpus_start": "2015-02-19",
+   "corpus_end": "2026-09-30",
+   "first_index_month": "2015-03",
+   "last_target_month": "2026-09",
+   "initial_window": 48,
+   "long_initial_window": 120,
+   "long_first_target_month": "1980-03"
+  },
+  "index": {
+   "min_headlines_per_day": 5,
+   "min_days_per_month": 15,
+   "title_month_min_share": 0.95,
+   "composite_members": [
+    "lm",
+    "vader",
+    "finbert",
+    "clf"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 10000,
+   "bootstrap_mean_block": 6,
+   "ci_level": 0.9,
+   "alpha": 0.05,
+   "horizons": [
+    1,
+    3
+   ]
+  },
+  "release_lag_months": {
+   "ics": {
+    "sp500": 1,
+    "ics": 0
+   },
+   "sp500_return": {
+    "sp500": 0,
+    "ics": 0
+   },
+   "epu": {
+    "sp500": 1,
+    "ics": 1
+   }
+  },
+  "publication_lag_days": {
+   "sffed_nsi": 7
+  },
+  "models": "L0 base rate; L1 lagged excess return; L2 index; L3 both"
+ },
+ "experiment": "E04",
+ "name": "sp500_direction",
+ "target": "1 if the S&P 500 month-end close is above the previous one",
+ "sample": {
+  "first_origin": "2015-03",
+  "last_origin": "2026-08",
+  "n_origins": 138,
+  "initial_window": 48,
+  "horizon": 1,
+  "n_oos": 90,
+  "first_oos_target": "2019-04",
+  "last_oos_target": "2026-09"
+ },
+ "results": {
+  "baselines": {
+   "L0": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.23691286014530435,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": null,
+    "dm_brier_p": null
+   },
+   "L1": {
+    "n_oos": 90,
+    "hit_rate": 0.6222222222222222,
+    "hit_ci_lo": 0.5555555555555556,
+    "hit_ci_hi": 0.6888888888888889,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 0.9888888888888889,
+    "pt_stat": -0.7694351901431488,
+    "pt_p": 0.7791824975924211,
+    "brier": 0.2419589712064266,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.4998513101825772,
+    "dm_brier_p": 0.1336529227283898
+   }
+  },
+  "lm": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24071288381985337,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 0.6278194445045923,
+    "dm_brier_p": 0.5301222267092851
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24612954721682007,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.2593539175048871,
+    "dm_brier_p": 0.20790252642115004
+   }
+  },
+  "vader": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.2372037718840264,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 0.04162755799816876,
+    "dm_brier_p": 0.9667956041722268
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24311930202742352,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 0.7440168360001498,
+    "dm_brier_p": 0.4568662897200315
+   }
+  },
+  "finbert": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24170549300803787,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.975530752459668,
+    "dm_brier_p": 0.048207948285722946
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6222222222222222,
+    "hit_ci_lo": 0.5555555555555556,
+    "hit_ci_hi": 0.6888888888888889,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 0.9888888888888889,
+    "pt_stat": -0.7694351901431488,
+    "pt_p": 0.7791824975924211,
+    "brier": 0.2457379790294639,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 2.121516304600198,
+    "dm_brier_p": 0.033878377328783404,
+    "pt_p_bonferroni": 1.0
+   }
+  },
+  "clf": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24013360563540087,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.6768792704397868,
+    "dm_brier_p": 0.09356609250856973
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6222222222222222,
+    "hit_ci_lo": 0.5555555555555556,
+    "hit_ci_hi": 0.6888888888888889,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 0.9888888888888889,
+    "pt_stat": -0.7694351901431488,
+    "pt_p": 0.7791824975924211,
+    "brier": 0.24488659521485195,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.9586737348860432,
+    "dm_brier_p": 0.050151008277944165,
+    "pt_p_bonferroni": 1.0
+   }
+  },
+  "gdelt_tone": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.23918660519783594,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 0.435649085317026,
+    "dm_brier_p": 0.663091351611456
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24468731025434315,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.2430463150966486,
+    "dm_brier_p": 0.21385076686647952
+   }
+  },
+  "composite": {
+   "L2": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.23773679563138592,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 0.23001335057783437,
+    "dm_brier_p": 0.818081395569678
+   },
+   "L3": {
+    "n_oos": 90,
+    "hit_rate": 0.6333333333333333,
+    "hit_ci_lo": 0.5666666666666667,
+    "hit_ci_hi": 0.7,
+    "hit_rate_base": 0.6333333333333333,
+    "share_up_actual": 0.6333333333333333,
+    "share_up_predicted": 1.0,
+    "pt_stat": null,
+    "pt_p": null,
+    "brier": 0.24316403947079787,
+    "brier_base": 0.23691286014530435,
+    "dm_brier_stat": 1.2548058684923202,
+    "dm_brier_p": 0.20954924171260636
+   }
+  }
+ },
+ "decision": {
+  "primary_predictor": "composite",
+  "alpha": 0.05,
+  "L2_hit_above_base": false,
+  "pt_significant": false,
+  "outcome": "null"
+ },
+ "files_out": [
+  "E04_forecasts.csv"
+ ]
+}

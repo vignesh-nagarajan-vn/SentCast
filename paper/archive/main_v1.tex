@@ -1,0 +1,724 @@
+%% CEUR-WS CEURART, single column. Anonymous submission.
+%% No result is typed here: \res{key} prints a value from tables/numbers.tex, which the report
+%% step of the pipeline generates from results/ (sources: results/paper_numbers.csv).
+%% Tables and figures are generated too. Do not edit them by hand.
+\documentclass[
+% twocolumn,
+% hf,
+]{ceurart}
+
+\sloppy
+
+%% Anonymity: pdfTeX otherwise records the full local path of every included PDF
+%% (the licence logo sits under the user's home folder) in the output file.
+\ifdefined\pdfsuppressptexinfo \pdfsuppressptexinfo=-1 \fi
+
+\input{tables/numbers}
+\newcommand{\Ros}{\ensuremath{R^2_{\mathrm{OS}}}}
+
+\begin{document}
+
+%% Rights management information. Year and event wording: confirm with the editors.
+\copyrightyear{2026}
+\copyrightclause{Copyright for this paper by its authors.
+  Use permitted under Creative Commons License Attribution 4.0
+  International (CC BY 4.0).}
+
+\conference{BDAI 2026: 3rd International Scientific Workshop ``New Frontiers in Big Data and
+  Artificial Intelligence'', December 16--18, 2026, Aosta, Italy}
+
+%% Title chosen by the author.
+\title{Out-of-Sample Evaluation of Textual News Sentiment for Predicting the Equity Premium and
+  Consumer Sentiment}
+
+%% Double-blind review: the author block stays anonymous until the camera-ready version.
+\author{Anonymous}
+
+\begin{abstract}
+  Textual sentiment extracted from news is widely proposed as a leading indicator for financial
+  markets and the real economy, yet most proposed predictors of the equity premium fail out of
+  sample. We report a pre-specified out-of-sample evaluation of whether a textual news
+  sentiment index improves one-month-ahead predictions of the equity premium (the S\&P 500
+  excess return), of its direction and of the change in the University of Michigan Index of
+  Consumer Sentiment. The index is built from
+  \res{corpus.dedup} economy and market headlines drawn from the open GDELT database for 2015
+  to 2026, scored with the Loughran-McDonald lexicon, VADER, FinBERT and a classifier trained
+  on the Financial PhraseBank, and aggregated into a monthly composite. Forecasts come from
+  expanding-window regressions that add the composite to a historical-mean and an own-lag
+  benchmark, and every headline is dated before its forecast date. Over \res{E03.n}
+  out-of-sample months the composite yields an out-of-sample R-squared of
+  \res{E03.composite.m0.r2}\% for the equity premium against the historical mean, which is not
+  statistically significant (Clark-West $p = \res{E03.composite.m0.p}$). Its directional hit
+  rate equals the base rate, and it does not improve forecasts of consumer sentiment. Under the
+  decision rule fixed in advance the outcome is null for all three targets. Indices from two
+  large language models over the same months, and a published news sentiment index over a
+  longer sample, do not significantly improve on the benchmarks either. Measurement checks
+  show that the index is reliable given the sampling of the news and closely tracks an index
+  built from page titles. The main analysis is reproducible from free data with one command.
+\end{abstract}
+
+\begin{keywords}
+  sentiment analysis \sep
+  financial markets \sep
+  stock return forecasting \sep
+  consumer sentiment \sep
+  news text \sep
+  out-of-sample evaluation \sep
+  large language models
+\end{keywords}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+News text is produced every day and is available at once, while most economic statistics arrive
+weeks after the period they describe. Text is now widely used as data in economics and
+finance~\cite{gentzkow2019text}, and its sentiment, the positive or negative tone of the words,
+is a natural candidate for an early signal about markets and the economy. Pessimism in a daily
+newspaper column predicts lower market prices followed by a
+reversal~\cite{tetlock2007giving}, and an index of newspaper sentiment predicts movements in
+consumer sentiment~\cite{shapiro2022measuring}. A recent proposal applies the idea to social
+media: it forecasts United States economic behaviour from the sentiment of posts and reports
+forecasts of the S\&P 500 for four months of 2024~\cite{nagarajan2024pebsa}. That study lists an
+overlap between training and input data among its limitations and names a longer sample and a
+comparison of models as future work.
+
+A longer sample makes the task hard. Most variables proposed as predictors of the aggregate
+stock return fail to beat the historical mean return in forecasts of months that were not used
+for fitting~\cite{welch2008comprehensive}, and most predictors proposed since then lose
+significance or perform poorly in such forecasts~\cite{goyal2024comprehensive}. With sign
+restrictions on the forecasts many predictors do beat the historical mean, and a small gain can
+matter to an investor~\cite{campbell2008predicting}. A sentiment index built for prediction has
+forecast aggregate returns in and out of sample~\cite{huang2015investor}. Whether sentiment
+from free news text adds to simple forecasts is therefore an empirical question, and the answer
+depends on how the test is run: on the length of the sample, on whether accuracy is measured
+on months the model has not seen, and on whether the rule for reading the results is set
+before they are known.
+
+This paper runs that test for one sentiment index and three monthly targets. We ask four
+questions. (RQ1) Does a monthly sentiment index built from free news headlines improve
+one-month-ahead forecasts of the S\&P 500, for its excess return and for its direction? (RQ2)
+Does the same index improve one-month-ahead forecasts of the change in the University of
+Michigan Index of Consumer Sentiment? (RQ3) How do the constructed indices compare with
+published indices as predictors, and do they add anything to them? (RQ4) Is the index a sound
+measurement: do scorers agree, is it reliable given how the news is sampled, and does it track
+published measures?
+
+Four features define the test. The questions, the sample, the models, the statistical tests and
+a rule that maps the results to an outcome of positive, mixed or null were written down before
+any experiment was run; later changes are dated and listed in Section~\ref{sec:method}. All
+inputs are free and can be downloaded again, with one exception, a secondary comparison that
+uses two commercial language models as scorers. Every forecast is made month by month from data
+dated before the forecast date, and automated checks stop the computation if a headline dated
+on or after a forecast date enters that forecast. All twelve experiments of the plan are
+reported, whatever their result.
+
+The outcome is null for all three targets. Over \res{E03.n} test months, from \res{E03.first} to
+\res{E03.last}, adding the index to a forecast based on the historical mean lowers the sum of
+squared forecast errors for the S\&P 500 excess return by \res{E03.composite.m0.r2}\%, with a
+90\% interval from \res{E03.composite.m0.lo}\% to \res{E03.composite.m0.hi}\% and a one-sided
+$p$-value of \res{E03.composite.m0.p}. For the direction of the S\&P 500 the hit rate is
+\res{E04.composite.hit}\%, the same as predicting a rise every month. For consumer sentiment the
+squared errors are larger with the index than without it (\res{E05.composite.m0.r2}\%). The news
+sentiment index published by the Federal Reserve Bank of San Francisco, evaluated on
+\res{E06.n} test months, gives \res{E06.long.sp.sffed.m0.r2}\% for the S\&P 500 return and
+\res{E06.long.ics.sffed.m1.r2}\% for consumer sentiment when it is added to the target's own
+lag.
+
+The paper makes four contributions. The first is a test with a rule fixed in advance and every
+outcome reported, including the null. The second is a way to build a long headline corpus from
+free data, by rebuilding headlines from the web addresses of articles, together with checks
+that the rebuilt headlines track page titles and that an index from a small sample of each
+day's news is reliable. The third is a comparison of word lists, a trained classifier, FinBERT
+and two large language models as scorers on the same forecasting task, next to published
+indices evaluated over \res{E06.n} months. The fourth is a pipeline that reruns the study from
+raw downloads with one command.\footnote{The code repository, with the result files behind
+every table and figure, will be made public upon acceptance, once the paper is de-anonymised.}
+Section~\ref{sec:related} places the study in the literature, Sections~\ref{sec:data}
+and~\ref{sec:method} describe the data and the method, Section~\ref{sec:results} reports the
+results, Section~\ref{sec:robust} the robustness checks and the limitations, and
+Section~\ref{sec:conclusion} concludes.
+
+\section{Related work}
+\label{sec:related}
+
+Several studies of sentiment and the stock market work at the daily frequency.
+\citet{tetlock2007giving} finds that pessimism in a daily newspaper column predicts lower market
+prices followed by a reversal. \citet{garcia2013sentiment} counts positive and negative words in
+New York Times columns from 1905 to 2005 and finds that the resulting sentiment predicts daily
+stock returns, mostly in recessions. \citet{bollen2011twitter} report that some dimensions of
+Twitter mood improve forecasts of the daily direction of the Dow Jones index on a sample from
+2008. \citet{ke2019predicting} propose a supervised method that extracts the sentiment relevant
+for returns from news articles.
+
+At the monthly frequency the reference point is the literature on predicting the aggregate
+stock return. \citet{welch2008comprehensive} show that most proposed predictors fail out of
+sample against the historical mean, and \citet{goyal2024comprehensive} reach a similar verdict
+for 29 newer predictors with data to 2021. \citet{campbell2008predicting} show that sign
+restrictions let many predictors beat the historical mean and that a small out-of-sample
+R-squared can matter to investors. \citet{huang2015investor} build an investor sentiment index
+designed for prediction and find that it forecasts aggregate stock returns in and out of
+sample. Our evaluation follows this literature: we use the out-of-sample R-squared
+of~\citet{campbell2008predicting} and the test for nested models
+of~\citet{clark2007approximately}.
+
+Text is also used to measure and forecast the economy; \citet{gentzkow2019text} survey the
+methods. \citet{shapiro2022measuring} build a sentiment index from newspaper articles for 1980
+to 2015 and find that news sentiment predicts movements in consumer sentiment.
+\citet{baker2016measuring} build an index of economic policy uncertainty from newspaper
+coverage, whose innovations foreshadow declines in investment, output and employment.
+\citet{kalamara2022making} find that newspaper text improves forecasts of GDP, inflation and
+unemployment in the United Kingdom, most in periods of stress. The first two indices are
+published and updated, and we use them as benchmarks.
+
+The scorers we use come from four lines of work. \citet{loughran2011liability} show that general
+word lists misclassify financial text and provide lists made for it. \citet{hutto2014vader}
+provide VADER, a rule-based general sentiment lexicon validated on social media text.
+\citet{malo2014good} provide the Financial PhraseBank, a set of financial sentences annotated by
+humans, and \citet{araci2019finbert} shows that a BERT language model further trained on
+financial text improves the classification of financial sentiment.
+
+Large language models are a recent addition. \citet{lopezlira2023chatgpt} find that scores of
+news headlines from such a model predict stock returns after the model's knowledge cutoff.
+\citet{glasserman2023assessing} show that backtests of this kind are biased when the model's
+training window overlaps the test period. We therefore also report the language-model results
+for the months after a model's training cutoff.
+
+Our text comes from GDELT, an open database built from world news~\cite{leetaru2013gdelt}. The
+study differs from the daily studies above in its monthly frequency, and from the monthly
+return literature in its predictor: an index built only from free text that anyone can
+download again, with no vendor news feed. It takes up the two items that the proposal
+in~\cite{nagarajan2024pebsa} leaves for future work, a longer sample and a comparison of models
+against baselines.
+
+\section{Data}
+\label{sec:data}
+
+\subsection{Targets}
+
+All forecasts are dated on the last trading day of a calendar month, which we call the forecast
+date. The first target is the S\&P 500 excess return of the following month: the log change of
+the index between two month-end closes, minus the return on a three-month Treasury bill over
+the same month, in percent,
+\begin{equation}
+  R_m = 100 \left[ \ln \frac{P_m}{P_{m-1}} - \ln \left( 1 + \frac{b_{m-1}}{1200} \right) \right],
+\end{equation}
+where $P_m$ is the close on the last trading day of month $m$ and $b_{m-1}$ the bill rate of
+the previous month in percent per year. The excess return, also called the equity premium, is
+the standard target of the return prediction literature. The bill rate is known at the start
+of the month, and the index is a price index without dividends. The second target is the direction of the
+S\&P 500: one if the month-end close is above the previous one and zero otherwise. The index
+rose in \res{E04.upshare}\% of the test months. The third target is the monthly change in the
+University of Michigan Index of Consumer Sentiment, a household survey whose final value for a
+month is released at the end of that month or in the first days of the next. Month-end closes
+come from FRED, the data service of the Federal Reserve Bank of St.\ Louis, from November 2016
+and from the data file of~\citet{welch2008comprehensive} for earlier months. The bill rate and
+the trading calendar also come from FRED.
+
+The text sample gives \res{E03.origins} forecasts. The first is made at the end of
+\res{E03.firstorigin} and the last at the end of \res{E03.lastorigin}. The first
+\res{E03.window} serve only for the initial estimate, which leaves \res{E03.n} test months, from
+\res{E03.first} to \res{E03.last}.
+
+\subsection{Headline corpus}
+
+GDELT is an open database built from world news~\cite{leetaru2013gdelt}. Its Global Knowledge
+Graph publishes one file every 15 minutes, with one row per article that holds the web address,
+the locations detected in the text and a tone score. The study is designed to run on one
+laptop, so we draw two of the 96 files of each day, from February 2015 to September 2026, with
+a random generator seeded by the date; days are counted in Coordinated Universal Time. A
+missing file is replaced by another file of the same day. The draw requested
+\res{corpus.requested} files and obtained \res{corpus.downloaded} (\res{corpus.gb}~GB). Of
+these, \res{corpus.replaced} are replacements, and \res{corpus.nofile} draws on
+\res{corpus.daysnofile} days in June and July 2025 found no readable file.
+
+Page titles are present in the files only for the later years: \res{corpus.title.first} is the
+first index month in which at least 95\% of our headlines have one, and
+\res{corpus.title.share}\% of all headlines have one. To keep one definition for the whole
+sample we rebuild a headline from the words in the web address of each article. We keep an
+article if GDELT tags a United States location, the rebuilt headline has at least four words,
+it contains at least one of \res{corpus.keywords} fixed economy and market terms (inflation,
+recession, unemployment, Federal Reserve and Wall Street are examples), and its source is not
+one of \res{corpus.pressdomains} press-release sites. Exact duplicates are removed. Each headline carries
+the time of the file in which GDELT recorded the article, which is at or after its publication.
+
+\begin{table}
+  \caption{The headline corpus: files drawn from GDELT, the filter funnel and the coverage of
+    the index months.}
+  \label{tab:corpus}
+  \centering
+  \input{tables/tab1_corpus}
+\end{table}
+
+Table~\ref{tab:corpus} shows the result. Of \res{corpus.rows} article rows read,
+\res{corpus.dedup} headlines remain, from \res{corpus.domains} web domains; the ten largest
+domains supply \res{corpus.top10}\% of them. An index month holds between
+\res{corpus.permonth.min} and \res{corpus.permonth.max} headlines, with a median of
+\res{corpus.permonth.median}.
+
+\subsection{Published indices and scorer inputs}
+
+Three published series serve as benchmarks: the Daily News Sentiment Index of the Federal
+Reserve Bank of San Francisco~\cite{shapiro2022measuring}, the news-based Economic Policy
+Uncertainty index for the United States~\cite{baker2016measuring} and, as a predictor of the
+S\&P 500 only, the level of the consumer sentiment index. All three reach back to 1980 or
+earlier, which gives a long sample of \res{E06.origins} forecasts. After an initial window of
+\res{E06.window} months it leaves \res{E06.n} test months, from \res{E06.first} to
+\res{E06.last}. The scorers use the
+word lists of~\citet{loughran2011liability}, the Financial PhraseBank~\cite{malo2014good} and
+the published FinBERT model~\cite{araci2019finbert}.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Sentiment scorers}
+
+A scorer maps one headline to a number that is higher for more positive text. We use four
+scorers that differ in kind. The first is a lexicon, a fixed list of words tagged positive or
+negative. With the finance word lists of~\citet{loughran2011liability} the score is the number
+of positive words minus the number of negative words, divided by their sum, and zero if the
+headline contains no listed word. Negation is not handled. The second is VADER, a
+general-purpose lexicon with rules for emphasis and negation that returns one number between
+$-1$ and $1$~\cite{hutto2014vader}. The third is FinBERT, a neural language model further
+trained on financial text and on labelled financial sentences~\cite{araci2019finbert}. Its score
+is the probability it assigns to the class positive minus the probability of the class
+negative. The fourth is a classifier that we train ourselves: a logistic regression on weighted
+counts of words and word pairs, fitted once to the \res{meas.labelled.clf.n} labelled sentences
+of the Financial PhraseBank~\cite{malo2014good} and scored like FinBERT. In five-fold
+cross-validation it classifies \res{meas.labelled.clf.acc}\% of those sentences correctly,
+against \res{meas.labelled.majority}\% for always choosing the most frequent class. No scorer is
+tuned on the forecast targets.
+
+Two further indices serve as comparisons. GDELT publishes its own tone score for the whole
+article, and we treat the index built from it as an external benchmark. Two large language
+models are added as a secondary comparison in Section~\ref{sec:robust}.
+
+\subsection{Index construction}
+
+The daily index of a scorer is the mean score of the day's headlines, and a day with fewer than
+five headlines is missing. The monthly index is the mean of the daily index over a window that
+starts on the previous forecast date and ends the day before the current one. It needs at least
+15 valid days, and all \res{corpus.months} index months meet this requirement. The primary
+predictor, fixed in advance, is the composite: each of the four monthly indices is standardised
+with its mean and standard deviation over the first \res{E03.window} months only, and the four
+are averaged with equal weights.
+
+\subsection{Forecast models and baselines}
+
+For the two continuous targets we compare four linear regressions, estimated by ordinary least
+squares. Let $y_{t+1}$ be the target in month $t+1$ and $x_t$ the sentiment index available on
+the forecast date at the end of month $t$. M0 forecasts with the mean of $y$ so far, the
+historical mean. M1 regresses $y_{t+1}$ on a constant and $y_t$, the own lag. M2 regresses
+$y_{t+1}$ on a constant and $x_t$. M3 uses a constant, $y_t$ and $x_t$. M0 and M1 are the
+baselines. The first asks whether the index beats a forecast that uses no predictor, the second
+whether it adds to the target's own past. For the direction we use logistic regressions with
+the same predictors, L0 to L3, where L0 predicts with the share of rising months so far and L1
+uses the lagged excess return. A rise is predicted when the fitted probability is at least 0.5.
+The published indices enter the same models in place of $x_t$.
+
+\subsection{Evaluation}
+
+All models are estimated again every month on an expanding window. At each forecast date the
+model is fitted to all months up to that date and forecasts the next month, which is then added
+to the data. The forecast month is never part of the fitting data, so accuracy is measured only
+on months the model has not seen. This is what out-of-sample means here. The fit of a regression
+on its own estimation sample does not show it.
+
+The main statistic is the out-of-sample R-squared~\cite{campbell2008predicting},
+\begin{equation}
+  \Ros = 1 - \frac{\sum_t (y_t - \hat{y}_t)^2}{\sum_t (y_t - \bar{y}_t)^2},
+\end{equation}
+where $\hat{y}_t$ is the forecast of the model, $\bar{y}_t$ that of the benchmark, and the sums
+run over the test months. It is the share by which the summed squared errors of the model are
+smaller than those of the benchmark. It is positive when the model is more accurate, zero when
+the two are equal and negative when the model is worse, with no lower bound.
+
+A positive \Ros{} can arise by chance. M2 contains M0 as the special case in which the
+coefficient on the index is zero, and M3 contains M1 in the same way; such models are called
+nested. If that coefficient is truly zero, estimating it only adds noise, so the larger model
+is expected to have slightly larger errors in the test months. The test
+of~\citet{clark2007approximately} removes this expected penalty and then asks whether the
+adjusted difference in squared errors is above zero. It is one-sided, and we use the 5\% level.
+Because the test asks whether the index has predictive content, while \Ros{} measures realised
+accuracy, the test can reject while \Ros{} is at or below zero.
+
+For the direction we report three quantities. The hit rate is the share of months in which the
+direction is called correctly. The test of~\citet{pesaran1992simple} asks whether the calls
+match the outcomes more often than chance; it is undefined, and shown as n/a, for a model that
+predicts the same direction every month. The Brier score is the mean squared error of the
+predicted probability, and we compare it with that of L0 by the test
+of~\citet{diebold1995comparing}. Intervals are 90\% intervals from a stationary
+bootstrap~\cite{politis1994stationary}, which resamples the test months 10,000 times in blocks
+with a mean length of six months, or twelve at the three-month horizon. At that horizon, where
+forecasts overlap, variances use the estimator of~\citet{newey1987simple}.
+
+\subsection{Decision rule}
+
+The rule that maps results to an outcome was fixed before the experiments. For a continuous
+target the outcome is positive if the composite beats both baselines: M2 against M0 and M3
+against M1 must each have \Ros{} above zero and a Clark-West $p$-value below 0.05. The outcome
+is mixed if exactly one comparison meets both conditions, and null otherwise. For the direction
+the outcome is positive if the hit rate of L2 is above that of L0 and the direction test has a
+$p$-value below 0.05, and null otherwise. The four individual scorers are secondary. Their
+$p$-values are multiplied by four, a Bonferroni adjustment for testing four scorers, and a null
+for the composite is reported as a null even if one scorer is significant. The $p$-values of
+all other comparisons in the paper are not adjusted.
+
+\subsection{Leakage controls}
+
+Leakage is information dated after a forecast was made that enters the forecast. Three rules
+prevent it. A headline is used only if the time at which GDELT recorded it is before the
+forecast date. A statistic about a month is published after that month, so every monthly series
+has a release lag. The policy uncertainty index is lagged one month, and so is consumer
+sentiment when it predicts the S\&P 500. As its own lag, consumer sentiment enters with the
+latest survey value, whose final release can fall a few days after the forecast date; the
+text is still cut off at the forecast date, and Section~\ref{sec:robust} reports a variant
+without that value. The daily San Francisco Fed index is cut off seven days before the
+forecast date. The composite
+is standardised with the first \res{E03.window} months only. Tests in the code fail if any
+headline is dated on or after its forecast date or if a series has no release lag.
+
+\subsection{Changes to the plan}
+
+The plan was changed in four ways after it was fixed. First, before any request was sent to a
+language model, that comparison was extended from 200 headlines per month and one model to
+every headline and two models, with a split of the results at each model's training cutoff.
+Second, a check of a first complete run found that the downloader stopped looking for a
+replacement file after three attempts, a limit the plan does not contain, and that one
+robustness variant, the stricter timing for consumer sentiment in Section~\ref{sec:robust},
+was incomplete. Both were corrected, nine months of files were downloaded again, and all
+experiments were run again. Third, three tables were added or split off. Fourth, settings that
+the plan left open were fixed in the code, for example that a comparison needs at least 12
+forecasts. Before the first complete run, a trial run on three years of the corpus had produced
+the results for the published indices; no design choice was changed after it. Every outcome
+under the decision rule is the same in the first complete run and in the run reported here.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Measurement}
+
+Before the forecasts we ask whether the index is a sound measurement (RQ4).
+Table~\ref{tab:measurement} and Figure~\ref{fig:indices} summarise the checks.
+
+The four scorers agree only moderately on single headlines. The correlation between two scorers
+ranges from \res{meas.agree.headline.lm.clf} for the finance lexicon and the classifier to
+\res{meas.agree.headline.lm.vader} for the two lexicons. Averaging to months raises the
+agreement for some pairs and not for others: the monthly indices of the finance lexicon and of
+FinBERT correlate at \res{meas.agree.month.lm.finbert}, while those of VADER and of the
+classifier are almost unrelated (\res{meas.agree.month.vader.clf}).
+
+The headline rebuilt from the web address is a close stand-in for the page title. On the
+\res{meas.title.headline.n} headlines that have a title, the score of the rebuilt headline and
+the score of the title correlate between \res{meas.title.headline.finbert} and
+\res{meas.title.headline.lm}, depending on the scorer. The monthly indices built from the two
+texts correlate at \res{meas.title.month.finbert} or more over \res{meas.title.month.n} months.
+
+Two files a day are a small sample of each day's news, so part of the index is sampling noise.
+To measure it we build the index twice, once from each of the day's two files, and correlate
+the two halves; the Spearman-Brown formula then gives the reliability of the full index. It is
+\res{meas.split.lm} for the finance lexicon, \res{meas.split.vader} for VADER,
+\res{meas.split.finbert} for FinBERT and \res{meas.split.clf} for the classifier.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.88\linewidth]{figures/fig1_indices}
+  \caption{Monthly sentiment indices built from the headline corpus (solid) and the Daily News
+    Sentiment Index of the Federal Reserve Bank of San Francisco (dashed), \res{E03.firstorigin}
+    to \res{E03.lastorigin}. Every series is standardised over the months shown.}
+  \label{fig:indices}
+\end{figure}
+
+\begin{table}
+  \caption{Measurement checks by index. Zero: share of headlines scored exactly zero.
+    Split-half: reliability of the monthly index from the two daily files (Spearman-Brown).
+    URL/title: correlation between the scores of the rebuilt headline and of the page title,
+    per headline and per month. SF Fed and ICS: correlation of the monthly index with the San
+    Francisco Fed index and with the level of the Index of Consumer Sentiment. Return:
+    correlation with the S\&P 500 excess return of the same and of the next month.}
+  \label{tab:measurement}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab2_measurement}}
+\end{table}
+
+\begin{table}
+  \caption{Accuracy and macro-F1 on the Financial PhraseBank with three classes. The classifier
+    is evaluated by five-fold cross-validation. FinBERT was trained on these sentences. The
+    scores of the two lexicons are turned into classes at $-0.05$ and $0.05$.}
+  \label{tab:labelled}
+  \centering
+  \input{tables/tab2b_labelled}
+\end{table}
+
+The composite correlates at \res{meas.corr.composite.sffed} with the San Francisco Fed index in
+levels and at \res{meas.corr.composite.dsffed} in monthly changes (Figure~\ref{fig:indices}).
+Its correlation with the S\&P 500 excess return is \res{meas.corr.composite.retsame} for the
+same month and \res{meas.corr.composite.retnext} for the next month. On the labelled sentences
+(Table~\ref{tab:labelled}) the two lexicons classify \res{meas.labelled.lm.acc}\% and
+\res{meas.labelled.vader.acc}\% correctly. FinBERT reaches \res{meas.labelled.finbert.acc}\%, but
+it was trained on these sentences.
+
+\subsection{S\&P 500 return and direction}
+
+Table~\ref{tab:sp500return} reports the forecasts of the S\&P 500 excess return (RQ1). The own
+lag does not help: M1 has a larger squared error than the historical mean, with an \Ros{} of
+\res{E03.ar.r2}\%. Adding the composite to the historical mean gives an \Ros{} of
+\res{E03.composite.m0.r2}\%, with a 90\% interval from \res{E03.composite.m0.lo}\% to
+\res{E03.composite.m0.hi}\% and a Clark-West $p$-value of \res{E03.composite.m0.p}. Adding it to
+the own-lag model gives \res{E03.composite.m1.r2}\% (interval \res{E03.composite.m1.lo}\% to
+\res{E03.composite.m1.hi}\%, $p = \res{E03.composite.m1.p}$). Neither comparison meets the
+conditions of the rule, so the outcome is \res{E03.outcome}.
+
+No individual scorer changes this. Their \Ros{} against the historical mean lies between
+\res{E03.clf.m0.r2}\% for the classifier and \res{E03.vader.m0.r2}\% for VADER, and the smallest
+$p$-value before the Bonferroni adjustment is \res{E03.lm.m0.p}. The index built from GDELT's
+own tone gives \res{E03.gdelt.m0.r2}\%. Figure~\ref{fig:cssed} shows when the composite gains
+and loses against each benchmark. The gain is not steady. Against the historical mean the
+largest loss in a single month falls in \res{E03.cssed.worst} and the largest gain in
+\res{E03.cssed.best}, and that one month supplies \res{E03.cssed.bestvalue} of the total gain
+of \res{E03.cssed.total} in squared percentage points. Figure~\ref{fig:r2} collects the point
+estimates and the intervals.
+
+\begin{table}
+  \caption{One-month-ahead forecasts of the S\&P 500 excess return. $R^2_{OS}$ is the
+    out-of-sample R-squared in percent, for a model with the predictor against the historical
+    mean (M0) and for a model with the own lag and the predictor against the own-lag model
+    (M1). Intervals are 90\% bootstrap intervals. $p$ is the one-sided Clark-West $p$-value and
+    $p$ adj.\ its Bonferroni adjustment for the four individual scorers. Upper block: text
+    indices, \res{E03.n} test months. Lower blocks: published indices.}
+  \label{tab:sp500return}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab3_sp500_return}}
+\end{table}
+
+\begin{table}
+  \caption{One-month-ahead forecasts of the direction of the S\&P 500 from logistic models. Hit
+    rate: share of test months with the direction called correctly. Predicted up: share of
+    months in which a rise is predicted. PT $p$: Pesaran-Timmermann test, n/a when the model
+    predicts the same direction every month. Brier: mean squared error of the predicted
+    probability. DM $p$: Diebold-Mariano test of the Brier score against the L0 of the same
+    block.}
+  \label{tab:sp500direction}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab4_sp500_direction}}
+\end{table}
+
+Table~\ref{tab:sp500direction} reports the direction forecasts. Every model that uses a text
+index alone predicts a rise in each of the \res{E04.composite.n} test months. Its hit rate
+therefore equals the base rate of \res{E04.composite.base}\%, and the direction test is
+undefined. The predicted probabilities are no more accurate than the base rate: the Brier score
+of the composite is \res{E04.composite.brier}, against \res{E04.composite.brierbase} for L0. The
+outcome is \res{E04.outcome}.
+
+\subsection{Consumer sentiment}
+
+Table~\ref{tab:ics} reports the forecasts of the change in consumer sentiment (RQ2). The own
+lag is again worse than the historical mean, with an \Ros{} of \res{E05.ar.r2}\%. The composite
+improves on neither baseline. Its \Ros{} is \res{E05.composite.m0.r2}\% against the historical
+mean ($p = \res{E05.composite.m0.p}$) and \res{E05.composite.m1.r2}\% when it is added to the own
+lag ($p = \res{E05.composite.m1.p}$). The outcome is \res{E05.outcome}. Among the individual
+scorers VADER has the largest \Ros{}, \res{E05.vader.m0.r2}\%, with a $p$-value of
+\res{E05.vader.m0.p} before the adjustment and \res{E05.vader.m0.padj} after it.
+
+\begin{table}
+  \caption{One-month-ahead forecasts of the change in the Index of Consumer Sentiment. Columns
+    and blocks as in Table~\ref{tab:sp500return}.}
+  \label{tab:ics}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab5_ics_change}}
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/fig2_cssed}
+  \caption{Cumulative difference in squared forecast errors over the test months, benchmark
+    minus model with the composite index. A rising line means that the model with the index was
+    more accurate than its benchmark in that month. Left: S\&P 500 excess return. Right: change
+    in the Index of Consumer Sentiment (ICS).}
+  \label{fig:cssed}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/fig3_r2}
+  \caption{Out-of-sample R-squared with 90\% bootstrap intervals, by predictor, on the
+    \res{E03.n} test months of the text sample. The models with published indices are estimated
+    on data from 1980.}
+  \label{fig:r2}
+\end{figure}
+
+\subsection{Published indices}
+
+The lower blocks of Tables~\ref{tab:sp500return} to~\ref{tab:ics} repeat the exercise with the
+published indices (RQ3). These models and their benchmarks are estimated on data from 1980, so
+their baselines differ from those of the text models, which start in 2015. Over the long sample
+of \res{E06.n} test months none of the three indices lowers the squared error for the S\&P 500
+return. The \Ros{} against the historical mean is \res{E06.long.sp.sffed.m0.r2}\% for the San
+Francisco Fed index, \res{E06.long.sp.epu.m0.r2}\% for the policy uncertainty index and
+\res{E06.long.sp.icslevel.m0.r2}\% for the level of consumer sentiment. For the policy
+uncertainty index the Clark-West test rejects ($p = \res{E06.long.sp.epu.m0.p}$) although its
+\Ros{} is negative, the case described in Section~\ref{sec:method}. For consumer sentiment the
+San Francisco Fed index gives \res{E06.long.ics.sffed.m0.r2}\% against the historical mean and
+\res{E06.long.ics.sffed.m1.r2}\% when it is added to the own lag. On the \res{E06.text.n} months
+of the text sample the San Francisco Fed index gives \res{E06.text.sp.sffed.m0.r2}\% for the
+S\&P 500 return ($p = \res{E06.text.sp.sffed.m0.p}$) and \res{E06.text.ics.sffed.m0.r2}\% for
+consumer sentiment ($p = \res{E06.text.ics.sffed.m0.p}$).
+
+Table~\ref{tab:incremental} asks whether the composite adds to models that already contain the
+published indices. Added to a model with the San Francisco Fed index it gives an \Ros{} of
+\res{E07.sp.sffed.r2}\% for the S\&P 500 return. For consumer sentiment, added to the own lag
+and the San Francisco Fed index, it gives \res{E07.ics.sffed.r2}\% ($p = \res{E07.ics.sffed.p}$),
+and added to the own lag and the lagged S\&P 500 return it gives \res{E07.ics.lagret.r2}\%.
+
+\begin{table}
+  \caption{The composite index added to models that already contain other predictors.
+    $R^2_{OS}$ compares the model with the composite against the same model without it, on
+    \res{E07.sp.sffed.n} test months.}
+  \label{tab:incremental}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab6b_incremental}}
+\end{table}
+
+\section{Robustness and limitations}
+\label{sec:robust}
+
+\subsection{Robustness}
+
+Table~\ref{tab:robustness} repeats the three main experiments under other choices. With an
+initial window of 36 or 60 months, or a rolling window of 48 months, the \Ros{} of the composite
+for the S\&P 500 return is \res{E08.initial36.sp.m0.r2}\%, \res{E08.initial60.sp.m0.r2}\% and
+\res{E08.rolling48.sp.m0.r2}\%, and no outcome changes. No outcome changes either when the index
+enters in first differences, when the monthly index weights headlines and not days, or when the
+index is built from page titles on the \res{E09.title.n} test months that have them. With the
+raw log return or a simple excess return as the target, the \Ros{} is \res{E10.raw.m0.r2}\% and
+\res{E10.simple.m0.r2}\%. For consumer sentiment a stricter variant, in which the latest survey
+value is assumed unknown on the forecast date, gives \res{E10.strict.m1.r2}\% when the composite
+is added to the own lag.
+
+\begin{table}
+  \caption{Robustness of the composite index. $n$: number of test months. Hit rate / base: hit
+    rate of the logistic model with the composite and of the base-rate model. Title months:
+    index months in which at least 95\% of the headlines have a page title. ICS: Index of
+    Consumer Sentiment.}
+  \label{tab:robustness}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab6_robustness}}
+\end{table}
+
+At a three-month horizon the result for the S\&P 500 differs. The composite gives an \Ros{} of
+\res{E11.sp.m0.r2}\% against the historical mean, with an interval from \res{E11.sp.m0.lo}\% to
+\res{E11.sp.m0.hi}\% and a $p$-value of \res{E11.sp.m0.p}, and \res{E11.sp.m1.r2}\% when it is
+added to the own lag ($p = \res{E11.sp.m1.p}$). Under the rule this outcome is
+\res{E11.sp.outcome}. The \res{E11.n} test months of this experiment overlap, and the plan
+lists the three-month horizon as a secondary analysis. For consumer sentiment the outcome at
+three months is \res{E11.ics.outcome}.
+
+\subsection{Language models as scorers}
+
+%% The LLM scorer runs only with an API key, so its table may not exist.
+\IfFileExists{tables/tab7_llm.tex}{%
+\begin{table}
+  \caption{The sentiment index of a large language model in the forecasting models, by model.
+    The second and third row of each block split the test months by whether the whole text
+    window lies after the month in which the training data of the model end, as stated by its
+    provider. n/a: fewer than 12 forecasts.}
+  \label{tab:llm}
+  \centering
+  \resizebox{\linewidth}{!}{\input{tables/tab7_llm}}
+\end{table}}{}
+
+Table~\ref{tab:llm} reports a secondary comparison in which the scorer is a large language
+model. Two commercial models, \texttt{\res{E12.a.model}} and \texttt{\res{E12.b.model}}, label
+each headline with an integer from $-2$ to $2$, and the index is built as for the other
+scorers. This index is outside the composite and the decision rule, and its $p$-values are not
+adjusted. Over all test months the index of neither model improves on the baselines for the
+S\&P 500 return, with an \Ros{} of \res{E12.a.all.sp.m0.r2}\% for the first model and
+\res{E12.b.all.sp.m0.r2}\% for the second. For consumer sentiment, added to the own lag, the
+two give \res{E12.a.all.ics.m1.r2}\% ($p = \res{E12.a.all.ics.m1.p}$) and
+\res{E12.b.all.ics.m1.r2}\% ($p = \res{E12.b.all.ics.m1.p}$).
+
+A language model may have been trained on text written after the headlines it
+scores~\cite{glasserman2023assessing}. The training data of the first model end in
+\res{E12.a.cutoff} according to its provider, and \res{E12.a.post.months} test months have a
+text window that lies wholly after that month. On these months its index gives
+\res{E12.a.post.sp.m0.r2}\% for the S\&P 500 return ($p = \res{E12.a.post.sp.m0.p}$) and
+\res{E12.a.post.ics.m1.r2}\% for consumer sentiment added to the own lag, with an interval from
+\res{E12.a.post.ics.m1.lo}\% to \res{E12.a.post.ics.m1.hi}\% and a $p$-value of
+\res{E12.a.post.ics.m1.p}. Three facts qualify this number. The sample is the smallest that our
+code evaluates. The forecasting models are still estimated on index values from before the
+cutoff. The comparison is one of many in this paper. For the second model only
+\res{E12.b.post.months} test month has a text window wholly after the cutoff, so the comparison
+cannot be made.
+
+\subsection{Limitations}
+
+The test covers \res{E03.n} months, which include the fall and recovery of the market in March
+and April 2020. A sample of this size has low power, which is why every headline number comes
+with an interval. The study covers one country, one stock index and one survey series. The
+S\&P 500 series is a price index without dividends, and the release dates of the consumer
+sentiment survey were not verified by machine.
+
+The corpus has five limits. Headlines are rebuilt from web addresses and are not the titles
+that readers saw. Two files a day cover a small part of each day's news. The set of sources
+changes over the sample: \res{corpus.mix.share}\% of the headlines of \res{corpus.mix.yearb}
+come from domains that also appear in \res{corpus.mix.yeara}, and \res{corpus.mix.top20} of the
+20 largest domains are the same in both years. The archive has no readable file for
+\res{corpus.daysnofile} days in June and July 2025, so the index month of
+\res{corpus.validdays.minmonth} rests on \res{corpus.validdays.min} days. The list of economy
+and market terms was fixed by hand in 2026, after the sample period, and was not validated
+against human labels.
+
+Several scorers and targets are tested. One primary predictor was fixed in advance and the
+four individual scorers carry a Bonferroni adjustment, but the $p$-values of the tone index,
+the published indices, the robustness checks and the language models are unadjusted. The
+published indices are used as downloaded in October 2026, and revisions of their history were
+not examined. For the language models, one request holds up to 40 headlines, so a label can be
+produced next to headlines dated after a forecast date, and the training cutoffs are statements
+of the provider that we did not check. That comparison is also the only part of the study that
+needs a paid service.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We tested whether sentiment measured from free news headlines improves one-month-ahead
+forecasts of the S\&P 500 and of consumer sentiment, with the plan and the decision rule fixed
+in advance. Under that rule the outcome is null for the S\&P 500 excess return, for its
+direction and for the change in consumer sentiment. The measurement checks describe an index
+that is reliable given the sampling, with a split-half reliability between
+\res{meas.split.clf} and \res{meas.split.vader}, that agrees with an index built from page
+titles and that correlates with a published news sentiment index. Published indices do not
+lower the squared error of the S\&P 500 forecasts over \res{E06.n} test months either.
+
+The null has a limited meaning. It agrees with the finding that most predictors of the
+aggregate stock return fail out of sample~\cite{welch2008comprehensive,goyal2024comprehensive}.
+It does not show that news sentiment carries no information. The 90\% interval for the S\&P
+500 return includes zero and also values that would be large by the standards of that
+literature, in which a small out-of-sample R-squared can matter to an
+investor~\cite{campbell2008predicting}, and \res{E03.n} test months cannot separate the two.
+The measurement checks narrow the reading in one respect: sampling noise does not dominate
+the index, and its use of web addresses in place of titles changes little.
+
+Two results fall outside the null. At a three-month horizon the outcome for the S\&P 500 return
+is \res{E11.sp.outcome}, and the index of one language model lowers the squared error for
+consumer sentiment on the \res{E12.a.post.months} months after its training cutoff. Both rest
+on small or overlapping samples and neither is the primary test, so we report them as
+candidates for a future test fixed in advance and not as findings. Within the same design the
+natural extensions are a larger share of each day's news, the text of the articles, and the
+daily horizon at which earlier studies report effects~\cite{tetlock2007giving,garcia2013sentiment}.
+The study reruns from free data with one command, so the test can be repeated as months are
+added to the sample.
+
+%% Required by CEUR-WS.
+%% Every sentence has to be true when the paper is submitted: the submitted text is the author's.
+\section*{Declaration on Generative AI}
+During the preparation of this work, the author used Claude (Anthropic) in order to: Generate
+literature review and Drafting content. The tool was used for background research on the
+related literature, to organise the code repository that accompanies the paper and to create a
+preliminary draft of the paper. The text of the paper was written by the author, who takes full
+responsibility for its content. The two language models evaluated as sentiment scorers in
+Section~\ref{sec:robust} are objects of study and were not used for writing.
+
+\bibliography{references}
+
+\end{document}

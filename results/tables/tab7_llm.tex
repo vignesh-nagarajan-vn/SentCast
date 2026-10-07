@@ -1,0 +1,15 @@
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ &  & \multicolumn{3}{c}{S\&P 500} & \multicolumn{4}{c}{ICS change} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-9}
+Model and test months & $n$ & $R^2_{OS}$ vs M0 & $p$ & Hit rate / base & $R^2_{OS}$ vs M0 & $p$ & $R^2_{OS}$ vs M1 & $p$ \\
+\midrule
+claude-haiku-4-5, all test months & 90 & $-$1.51 & 0.459 & 62.2 / 63.3 & 0.37 & 0.185 & 0.71 & 0.183 \\
+\quad after the cutoff month (2025-07) & 12 & 4.31 & 0.216 & 50.0 / 50.0 & 13.38 & 0.029 & 11.41 & 0.019 \\
+\quad other test months & 78 & $-$1.98 & 0.511 & 64.1 / 65.4 & $-$0.64 & 0.301 & $-$0.05 & 0.262 \\
+\midrule
+claude-sonnet-5-5, all test months & 90 & $-$1.86 & 0.637 & 62.2 / 63.3 & 0.29 & 0.193 & 0.72 & 0.184 \\
+\quad after the cutoff month (2026-06) & 1 & n/a & n/a & n/a & n/a & n/a & n/a & n/a \\
+\quad other test months & 89 & $-$1.80 & 0.628 & 62.9 / 64.0 & 0.09 & 0.213 & 0.58 & 0.196 \\
+\bottomrule
+\end{tabular}

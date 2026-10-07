@@ -1,0 +1,279 @@
+{
+ "result": "E05_ics_change",
+ "git_commit": "7f9ae0b2281ba8c6dca1e48388f33c356b6a37ce",
+ "config_sha256_12": "ae7d4fb30e64",
+ "generated_utc": "2026-10-06T22:54:37Z",
+ "config": {
+  "seed": 20261006,
+  "sample": {
+   "corpus_start": "2015-02-19",
+   "corpus_end": "2026-09-30",
+   "first_index_month": "2015-03",
+   "last_target_month": "2026-09",
+   "initial_window": 48,
+   "long_initial_window": 120,
+   "long_first_target_month": "1980-03"
+  },
+  "index": {
+   "min_headlines_per_day": 5,
+   "min_days_per_month": 15,
+   "title_month_min_share": 0.95,
+   "composite_members": [
+    "lm",
+    "vader",
+    "finbert",
+    "clf"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 10000,
+   "bootstrap_mean_block": 6,
+   "ci_level": 0.9,
+   "alpha": 0.05,
+   "horizons": [
+    1,
+    3
+   ]
+  },
+  "release_lag_months": {
+   "ics": {
+    "sp500": 1,
+    "ics": 0
+   },
+   "sp500_return": {
+    "sp500": 0,
+    "ics": 0
+   },
+   "epu": {
+    "sp500": 1,
+    "ics": 1
+   }
+  },
+  "publication_lag_days": {
+   "sffed_nsi": 7
+  },
+  "models": "M0 mean; M1 own lag; M2 index; M3 own lag + index"
+ },
+ "experiment": "E05",
+ "name": "ics_change",
+ "target": "monthly change in the Index of Consumer Sentiment, points",
+ "sample": {
+  "first_origin": "2015-03",
+  "last_origin": "2026-08",
+  "n_origins": 138,
+  "initial_window": 48,
+  "horizon": 1,
+  "n_oos": 90,
+  "first_oos_target": "2019-04",
+  "last_oos_target": "2026-09"
+ },
+ "results": {
+  "baselines": {
+   "M1_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.9809077766822085,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.8579172103228365,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": -0.06371607620285125,
+    "r2_ci_lo": -0.14122579295346935,
+    "r2_ci_hi": 0.011677724073675158,
+    "test": "clark_west_one_sided",
+    "stat": -0.8274240189095101,
+    "p": 0.7960016142973847
+   }
+  },
+  "lm": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.832239095001728,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.8691666678955126,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": -0.0011647516141404246,
+    "r2_ci_lo": -0.03804083169394725,
+    "r2_ci_hi": 0.031106510004815437,
+    "test": "clark_west_one_sided",
+    "stat": 0.5615340108878866,
+    "p": 0.2872167757494153,
+    "p_bonferroni": 1.0
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 4.984944657226981,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.8751499668724625,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": -0.001621598557064674,
+    "r2_ci_lo": -0.04420563064079843,
+    "r2_ci_hi": 0.03285184756535417,
+    "test": "clark_west_one_sided",
+    "stat": 0.4733286561609372,
+    "p": 0.3179893603505375,
+    "p_bonferroni": 1.0
+   },
+   "x_missing_origins": 0
+  },
+  "vader": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.802127555832641,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.809620021311461,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": 0.011273657777378765,
+    "r2_ci_lo": -0.039562537585526955,
+    "r2_ci_hi": 0.05313317182977008,
+    "test": "clark_west_one_sided",
+    "stat": 1.1733249463095161,
+    "p": 0.12033276105271229,
+    "p_bonferroni": 0.48133104421084916
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 4.948794252218427,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.8329361505668,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": 0.012853079300481518,
+    "r2_ci_lo": -0.03984940182123553,
+    "r2_ci_hi": 0.05191784254743078,
+    "test": "clark_west_one_sided",
+    "stat": 1.2384766168552128,
+    "p": 0.10776969356336807,
+    "p_bonferroni": 0.4310787742534723
+   },
+   "x_missing_origins": 0
+  },
+  "finbert": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.859141145318277,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.9006391387283763,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": -0.0123431539182699,
+    "r2_ci_lo": -0.052514075040558585,
+    "r2_ci_hi": 0.019217265231541034,
+    "test": "clark_west_one_sided",
+    "stat": 0.04154260339371872,
+    "p": 0.4834316647773744,
+    "p_bonferroni": 1.0
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 5.006160574933133,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.89388045128123,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": -0.010165541786755217,
+    "r2_ci_lo": -0.062440651568438914,
+    "r2_ci_hi": 0.027082940297958172,
+    "test": "clark_west_one_sided",
+    "stat": 0.14792506922623433,
+    "p": 0.44120095173632534,
+    "p_bonferroni": 1.0
+   },
+   "x_missing_origins": 0
+  },
+  "clf": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.829156117758023,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.848573747176582,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": 0.0001123306939764257,
+    "r2_ci_lo": -0.04583306906644272,
+    "r2_ci_hi": 0.038713867061318484,
+    "test": "clark_west_one_sided",
+    "stat": 0.43809578239966385,
+    "p": 0.33065842582687077,
+    "p_bonferroni": 1.0
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 4.968168738719038,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.853396240567044,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": 0.0051086059089408,
+    "r2_ci_lo": -0.04338443664283187,
+    "r2_ci_hi": 0.042515874141396,
+    "test": "clark_west_one_sided",
+    "stat": 0.7096634823711644,
+    "p": 0.23895642130579642,
+    "p_bonferroni": 0.9558256852231857
+   },
+   "x_missing_origins": 0
+  },
+  "gdelt_tone": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.881318007262381,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.952602947721102,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": -0.02160480133756648,
+    "r2_ci_lo": -0.07337175152325674,
+    "r2_ci_hi": 0.021628890624148273,
+    "test": "clark_west_one_sided",
+    "stat": 0.07756437912714856,
+    "p": 0.46908728916092934
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 5.008822874424175,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.9356137880599253,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": -0.011240248950233678,
+    "r2_ci_lo": -0.08166447660146814,
+    "r2_ci_hi": 0.04290521475546261,
+    "test": "clark_west_one_sided",
+    "stat": 0.33602103938276134,
+    "p": 0.36842750043698547
+   },
+   "x_missing_origins": 0
+  },
+  "composite": {
+   "M2_vs_M0": {
+    "n_oos": 90,
+    "rmse_model": 4.872983535266658,
+    "rmse_bench": 4.82942737183987,
+    "mae_model": 3.9368704897122653,
+    "mae_bench": 3.8387408213033627,
+    "r2_os": -0.018119157649008955,
+    "r2_ci_lo": -0.07847156510727293,
+    "r2_ci_hi": 0.031033302645762866,
+    "test": "clark_west_one_sided",
+    "stat": 0.1248371591990954,
+    "p": 0.4503262343516069
+   },
+   "M3_vs_M1": {
+    "n_oos": 90,
+    "rmse_model": 5.014505154090126,
+    "rmse_bench": 4.9809077766822085,
+    "mae_model": 3.9175437434329683,
+    "mae_bench": 3.8579172103228365,
+    "r2_os": -0.013535961703435406,
+    "r2_ci_lo": -0.09186807805286303,
+    "r2_ci_hi": 0.044912695455789964,
+    "test": "clark_west_one_sided",
+    "stat": 0.2861629012563648,
+    "p": 0.3873766783015553
+   },
+   "x_missing_origins": 0
+  }
+ },
+ "decision": {
+  "primary_predictor": "composite",
+  "alpha": 0.05,
+  "M2_beats_M0": false,
+  "M3_beats_M1": false,
+  "outcome": "null"
+ },
+ "files_out": [
+  "E05_forecasts.csv"
+ ]
+}
