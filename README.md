@@ -5,7 +5,7 @@
   - Referred to in this repository as SentCast, short for Sentiment Forecast
 - **Paper info:** 17 pages, 9 tables, 7 figures, 25 references (`paper/main.pdf`)
 - **Author:** Vignesh Nagarajan
-- **Target venue:** [BDAI 2026 Workshop](https://www.univda.it/bdai2026/)
+- **Submitted to:** [BDAI 2026 Workshop](https://www.univda.it/bdai2026/) on 2026-10-07 (CMT paper ID 12, under review)
 
 ## Methodology
 
