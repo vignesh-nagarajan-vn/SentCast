@@ -1,4 +1,4 @@
-"""Text corpus from GDELT GKG 2.0 files (PLAN.md section 3).
+"""Text corpus from GDELT GKG 2.0 files.
 
 Two 15-minute files per UTC day are drawn by a seeded rule, downloaded, filtered and
 reduced to one row per kept article. Output: data/interim/corpus/<YYYY-MM>.parquet and

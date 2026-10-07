@@ -1,4 +1,4 @@
-"""Targets, predictors and their alignment to forecast dates (PLAN.md sections 2, 6, 8).
+"""Targets, predictors and their alignment to forecast dates.
 
 Every table is indexed by forecast origin month m. Row m holds what is known at the
 forecast date tau(m) and the targets for month m+1 (h = 1) or months m+1..m+3 (h = 3).

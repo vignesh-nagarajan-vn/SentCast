@@ -1,10 +1,10 @@
 # Writing brief
 
-One entry per section, in page-budget order (PLAN.md section 11; 13 pages in total).
+One entry per section, in page-budget order (13 pages in total).
 Entries are notes to draft from, not paper text. Numbers are filled from `results/`
 by `python -m sentcast.outline`; every number filled from `results/` is listed with its
 source in `results/outline_numbers.csv`. Design constants (window lengths, thresholds,
-dates) come from PLAN.md and `config/sentcast.yaml`. Two typed numbers come from
+dates) come from `config/sentcast.yaml`. Two typed numbers come from
 elsewhere: the minimum of 12 forecasts for a comparison (`src/sentcast/experiments.py`)
 and the first FRED month of the S&P 500, 2016-11 (`docs/data.md`,
 `results/data_check.json`; it moves with the download date).
@@ -15,7 +15,7 @@ Conventions:
   return). Composite: the pre-specified primary predictor.
 - R2_OS: out-of-sample R-squared, percent, written as value (90% interval, p, n) =
   stationary-bootstrap interval, one-sided Clark-West p, number of test months.
-- Outcome: label from the rule fixed in PLAN.md section 1 (positive, mixed, null). A
+- Outcome: label from the rule fixed in advance (positive, mixed, null). A
   rule output; its meaning is yours to state.
 - Sources: BibTeX keys in `paper/references.bib`.
 - Tables and figures are named here by their files: Table 2b is
@@ -44,12 +44,12 @@ Facts the abstract needs:
   - four scorers (lexicon, VADER and FinBERT off the shelf; one classifier trained here
     on public labelled sentences), one monthly index
   - forecasts built from text dated before the forecast date and from series under the
-    release rules of PLAN.md section 8
+    release rules
   - {{E03_sp500_return:sample.n_oos:int}} test months,
     {{E03_sp500_return:sample.first_oos_target:str}} to
     {{E03_sp500_return:sample.last_oos_target:str}} (E03)
-  - plan and decision rule fixed before any experiment; later changes are dated in
-    PLAN.md, "Deviations" (the E12 design, before any LLM request; corrections to the
+  - plan and decision rule fixed before any experiment; later changes are dated
+    (the E12 design, before any LLM request; corrections to the
     downloader and to E10c after a first full run)
 <!-- if E12_llm:status == ran -->
   - secondary comparison: the same forecasts with an index from each of two LLM scorers
@@ -89,12 +89,10 @@ Points, in order:
    Sources: gentzkow2019text, tetlock2007giving, shapiro2022measuring.
 2. Motivating prior work, third person: nagarajan2024pebsa. Facts available:
    - proposes forecasting US economic behaviour from social media sentiment
-   - reported accuracy rests on {{audit_checks:n_observations:int}} monthly observations,
-     January to April 2024
+   - reports forecasts for four months, January to April 2024
    - own stated limitations: overlap of training and input data; social media users not
      representative of the public; US only; hardware
    - own stated future work: longer sample, model comparison
-   - evidence: `docs/audit.md` sections 2.1 and 3; `results/audit_checks.json`
 3. Difficulty of the task in the literature:
    - most return predictors fail out of sample: welch2008comprehensive,
      goyal2024comprehensive
@@ -102,9 +100,9 @@ Points, in order:
      R-squared can matter to investors: campbell2008predicting
    - sentiment and aggregate returns: huang2015investor
    - news sentiment and consumer sentiment: shapiro2022measuring
-4. The four questions RQ1 to RQ4 (PLAN.md section 1).
-5. Features of the test: plan and decision rule fixed in advance, later changes dated
-   (PLAN.md, "Deviations"); free, re-downloadable data only, except the LLM scorers of
+4. The four questions RQ1 to RQ4.
+5. Features of the test: plan and decision rule fixed in advance, later changes dated;
+   free, re-downloadable data only, except the LLM scorers of
    E12; month-by-month forecasts from past data; automated look-ahead checks; all
    experiments reported.
 6. Preview, numbers only:
@@ -135,7 +133,6 @@ Terms needing a plain lead-in:
 Questions only you can answer:
 - How strongly to state the answer to each question?
 - Framing: hypothesis test, check of earlier claims, or system description?
-- How much of the audit of the prior paper belongs here, if any?
 
 ---
 
@@ -144,7 +141,7 @@ Questions only you can answer:
 Purpose: place the study among work on text and markets, text and the macroeconomy,
 out-of-sample return prediction, and sentiment scoring.
 
-Groups (one line per source in PLAN.md section 10):
+Groups:
 1. News and social media sentiment and stock returns: tetlock2007giving (daily column
    pessimism, reversal); garcia2013sentiment (daily, concentrated in recessions, 1905 to
    2005); bollen2011twitter (daily Dow Jones direction, 2008 sample); ke2019predicting
@@ -189,7 +186,7 @@ Purpose: every series and the corpus, in enough detail to rebuild them. Table 1 
 (`paper/tables/tab1_corpus.tex`, E01).
 
 Points, in order:
-1. Targets (PLAN.md section 2).
+1. Targets.
    - S&P 500 close on the last trading day of the month; FRED from 2016-11, Welch-Goyal
      file before (`docs/data.md`); price index, no dividends
    - excess return = log price change minus monthly 3-month Treasury bill rate
@@ -262,21 +259,21 @@ Purpose: scorers, index, models, evaluation, look-ahead controls, each readable 
 audiences.
 
 Points, in order:
-1. Scorers (PLAN.md section 4): input and output of each. Sources:
+1. Scorers: input and output of each. Sources:
    loughran2011liability, hutto2014vader, araci2019finbert, malo2014good. Share of
    headlines scored exactly zero: lexicon
    {{E02_measurement:score_stats.lm.share_zero:pct1}}%, VADER
    {{E02_measurement:score_stats.vader.share_zero:pct1}}% (E02,
    `results/E02_measurement.json`).
-2. Index (PLAN.md section 5): daily mean; monthly mean of daily means over the window
+2. Index: daily mean; monthly mean of daily means over the window
    ending the day before the forecast date; composite of four standardised indices.
-3. Models (PLAN.md section 6): M0 to M3; L0 to L3; published indices in the same models.
-4. Evaluation (PLAN.md section 7): expanding window; R2_OS; Clark-West; Diebold-Mariano;
+3. Models: M0 to M3; L0 to L3; published indices in the same models.
+4. Evaluation: expanding window; R2_OS; Clark-West; Diebold-Mariano;
    Pesaran-Timmermann; bootstrap intervals; Bonferroni over the four scorers. Sources:
    campbell2008predicting, clark2007approximately, diebold1995comparing,
    pesaran1992simple, newey1987simple, politis1994stationary.
-5. Decision rule fixed in advance (PLAN.md section 1).
-6. Leakage controls (PLAN.md section 8); tests that enforce them (`tests/`).
+5. Decision rule fixed in advance.
+6. Leakage controls; tests that enforce them (`tests/`).
 
 Terms needing a plain lead-in before the formal definition, with the facts the lead-in
 must get right:
@@ -350,7 +347,7 @@ must get right:
       asked
     - the labels of record come from two runs of the same labelling code: the first on
       the corpus before nine months were downloaded again, the second for the headlines
-      still without a label (PLAN.md, "Deviations")
+      still without a label
     - requests over both runs: {{E12_llm:usage.requests:int}} (first model) and
       {{E12_llm:second_model.usage.requests:int}} (second), of which unusable
       {{E12_llm:usage.discarded_batches:int}} and
@@ -629,8 +626,8 @@ Robustness of the composite (Table 6), then the LLM index (Table 7):
   {{E11_horizon3:results.sp500_return_3m.decision.outcome:str}}; consumer sentiment
   added to M1 {{r2:E11_horizon3:results.ics_change_3m.results.composite.M3_vs_M1}},
   outcome {{E11_horizon3:results.ics_change_3m.decision.outcome:str}}
-- Power of the main test (`results/power.json`; not pre-specified, PLAN.md
-  "Deviations", 2026-10-07): simulation with the composite at its observed values,
+- Power of the main test (`results/power.json`; not pre-specified,
+  2026-10-07): simulation with the composite at its observed values,
   {{power:config.reps:int}} samples per value of the true R-squared; power is the share
   of samples in which M2 against M0 has R2_OS above zero and a Clark-West p-value below
   0.05
@@ -726,7 +723,6 @@ Limitations, as facts:
   second
 - E12 needs a paid API and hosted models; E01 to E11 use free data only
 <!-- end -->
-- deviations from the plan: PLAN.md, "Deviations"
 
 Questions only you can answer:
 - Which robustness results change your reading of section 5, if any?
@@ -762,5 +758,5 @@ Above the references. Wording is yours.
 
 ## References (1.0 page)
 
-`paper/references.bib`: 25 entries, each checked at the original (PLAN.md section 10).
+`paper/references.bib`: 25 entries, each checked at the original.
 The draft in `paper/main.tex` cites all 25. Keys by group: section 2 above.

@@ -31,7 +31,7 @@ Cross-checks:
 
 Chosen: FRED `SP500` month-end closes for every month FRED covers in full, and the
 Welch-Goyal `Index` column before that. Yahoo is not used by the pipeline because of its
-terms; its samples were downloaded once for this check and for the audit.
+terms; its samples were downloaded once for this check.
 
 Trading dates come from FRED `NASDAQCOM` (daily, 1971-02-05 to 2026-10-05, 14,034 rows),
 used only as a calendar. The risk-free rate is FRED `TB3MS` (1934-01 to 2026-09, 1,113
@@ -119,7 +119,7 @@ Fallback: GDELT DOC 2.0 API article lists. It returns real headlines and a sourc
 filter from 2017, but it is rate limited, capped at 250 articles per call, and not exactly
 repeatable. It is used only if the bulk files become unreachable.
 
-Consequences of the primary choice, carried into PLAN.md:
+Consequences of the primary choice:
 - Headline text. Page titles exist only from the third quarter of 2019. To keep one
   definition for the whole sample, the headline is rebuilt from the words in the article
   URL. Titles are used to validate this where both exist.
@@ -153,7 +153,7 @@ is named, they are not stored anywhere else.
 - A draw whose file is missing takes the next slot of the same day that has a file. The
   search continues at 00:00 after the last slot, so a replacement can lie earlier in the
   same UTC day than the drawn slot, and a file that cannot be read counts as missing
-  (PLAN.md section 3 and "Deviations"). The first version of the downloader stopped
+  The first version of the downloader stopped
   after three later slots and left 90 draws without a file (`results/E01_corpus.json` at
   commit `1d3e830`). After the correction the nine calendar months with such draws were
   downloaded again: 2015-10, 2016-06, 2020-10, 2020-11, 2021-08, 2022-11, 2023-03,
@@ -167,7 +167,7 @@ is named, they are not stored anywhere else.
   (`results/E01_monthly_counts.csv`).
 - The Google Storage address serves the same files and can stand in for the GDELT host.
 - During the run the GDELT host began answering http with a redirect to https. The base
-  URL was changed to https (PLAN.md, "Deviations").
+  URL was changed to https.
 - A network outage of about 19 minutes left 19 calendar months with missing files under
   the first version of the downloader, which treated any failure as a missing file. Those
   months were deleted and downloaded again.

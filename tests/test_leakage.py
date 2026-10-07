@@ -1,4 +1,4 @@
-"""Leakage controls (PLAN.md section 8).
+"""Leakage controls.
 
 These tests fail if text dated on or after a forecast date can enter that forecast, if a
 macro series is used without a release lag, or if a forecast can see data from its future.

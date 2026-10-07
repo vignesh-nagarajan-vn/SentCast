@@ -1,4 +1,4 @@
-"""From headline scores to daily and monthly indices (PLAN.md section 5)."""
+"""From headline scores to daily and monthly indices."""
 from __future__ import annotations
 
 import numpy as np

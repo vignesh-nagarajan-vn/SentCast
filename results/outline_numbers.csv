@@ -13,7 +13,6 @@ E04_sp500_direction:decision.outcome:str,results/E04_sp500_direction.json,decisi
 r2:E05_ics_change:results.composite.M2_vs_M0,results/E05_ics_change.json,results.composite.M2_vs_M0,r2,"-1.81% (90% interval -7.85% to 3.10%, p = 0.450, n = 90)"
 r2:E05_ics_change:results.composite.M3_vs_M1,results/E05_ics_change.json,results.composite.M3_vs_M1,r2,"-1.35% (90% interval -9.19% to 4.49%, p = 0.387, n = 90)"
 E05_ics_change:decision.outcome:str,results/E05_ics_change.json,decision.outcome,str,null
-audit_checks:n_observations:int,results/audit_checks.json,n_observations,int,4
 r2:E03_sp500_return:results.composite.M2_vs_M0,results/E03_sp500_return.json,results.composite.M2_vs_M0,r2,"1.03% (90% interval -2.44% to 4.80%, p = 0.149, n = 90)"
 E03_sp500_return:decision.outcome:str,results/E03_sp500_return.json,decision.outcome,str,null
 hit:E04_sp500_direction:results.composite.L2,results/E04_sp500_direction.json,results.composite.L2,hit,"63.3% (90% interval 56.7% to 70.0%), base rate 63.3%, PT p = n/a, n = 90"

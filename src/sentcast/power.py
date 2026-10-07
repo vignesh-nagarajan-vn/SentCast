@@ -1,4 +1,4 @@
-"""Power of the main test, by simulation. Not pre-specified: see PLAN.md, "Deviations".
+"""Power of the main test, by simulation. Not pre-specified.
 
 Question: how large would the predictive content of the composite have to be for the
 test of E03 and E05 to find it on the test months of the text sample?
@@ -11,7 +11,7 @@ target is simulated as
 where z() standardises over the sample and e is drawn with replacement from the
 standardised observed target, which keeps its tails. Each simulated sample goes through
 the forecasts of M0 and M2 (expanding window, same first window) and the Clark-West
-test. The rule of PLAN.md section 1 asks, for this comparison, for R2_OS above zero and a
+test. The decision rule asks, for this comparison, for R2_OS above zero and a
 p-value below alpha; the share of samples that meet both is the power.
 
 Inputs are files in results/ only. Run: python -m sentcast.power

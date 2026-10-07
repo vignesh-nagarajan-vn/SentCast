@@ -1,4 +1,4 @@
-"""Out-of-sample forecast engine (PLAN.md section 6).
+"""Out-of-sample forecast engine.
 
 Rows are forecast origins in time order. Row i holds the predictors known at the forecast
 date of origin i and the target that origin i forecasts. With horizon h, the target of

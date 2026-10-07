@@ -9,11 +9,10 @@ Checks:
   2b. the paper text takes every result from the generated \\res{key} macros: the macro file
       is current, every key used exists, and no decimal number is typed in paper/main.tex
   3. tables and figures under paper/ are identical to those under results/
-  4. references.bib keys equal the keys in PLAN.md section 10
-  5. nothing under paper/ (sources, PDF text, PDF metadata) names the author, an
+  4. nothing under paper/ (sources, PDF text, PDF metadata) names the author, an
      affiliation, the repository, or acknowledgements; the cited PEBSA reference is the
      one allowed place for the author's surname
-  6. with --compile: paper/main.tex compiles without errors and embeds Libertinus fonts
+  5. with --compile: paper/main.tex compiles without errors and embeds Libertinus fonts
 """
 from __future__ import annotations
 
@@ -35,7 +34,7 @@ FORBIDDEN = [r"vignesh", r"nagarajan", r"nrvig", r"tamu", r"texas\s*a\s*&?\s*m",
 TEXT_SUFFIXES = {".tex", ".bib", ".bbl", ".txt", ".md"}
 PEBSA_KEY = "nagarajan2024pebsa"
 # decimal numbers the paper text may contain as typed: the significance level and the
-# probability at which a rise is predicted (PLAN.md sections 1 and 6). Every other decimal is
+# probability at which a rise is predicted. Every other decimal is
 # a result and has to come from \res{key}.
 TYPED_DECIMALS = {"0.05", "0.5"}
 
@@ -124,13 +123,6 @@ def check_paper_numbers() -> dict:
             "typed_decimals": typed}
 
 
-def check_references() -> dict:
-    bib = set(re.findall(r"^@\w+\{([^,]+),", (PAPER / "references.bib").read_text(encoding="utf-8"), flags=re.M))
-    plan = (ROOT / "PLAN.md").read_text(encoding="utf-8")
-    section = plan.split("## 10. Related work", 1)[1].split("## 11.", 1)[0]
-    planned = set(re.findall(r"^\| ([a-z]+\d{4}[a-z]+) \|", section, flags=re.M))
-    return {"ok": bib == planned and 15 <= len(bib) <= 25, "n_bib": len(bib), "n_plan": len(planned),
-            "only_in_bib": sorted(bib - planned), "only_in_plan": sorted(planned - bib)}
 
 
 def _scan(text: str, where: str, ignore: str = "") -> list[dict]:
@@ -217,8 +209,7 @@ def compile_paper() -> dict:
 
 def main() -> None:
     report = {"experiments": check_experiments(), "outline_numbers": check_outline_numbers(),
-              "paper_numbers": check_paper_numbers(), "paper_mirror": check_mirror(),
-              "references": check_references()}
+              "paper_numbers": check_paper_numbers(), "paper_mirror": check_mirror()}
     if "--compile" in sys.argv:
         report["compile"] = compile_paper()
     report["anonymity"] = check_anonymity()

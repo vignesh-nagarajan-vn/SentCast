@@ -1,4 +1,4 @@
-"""Sentiment scorers (PLAN.md section 4). Each maps a list of texts to scores; higher is more positive."""
+"""Sentiment scorers. Each maps a list of texts to scores; higher is more positive."""
 from __future__ import annotations
 
 import hashlib

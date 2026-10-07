@@ -1,8 +1,8 @@
 {
  "result": "verification",
- "git_commit": "0d490a32bf472529c6286eab1ca2cac786252740",
+ "git_commit": "67f4ce91091b76cba593d540007a30a67add1984-dirty",
  "config_sha256_12": "ae7d4fb30e64",
- "generated_utc": "2026-10-07T21:12:21Z",
+ "generated_utc": "2026-10-07T21:38:04Z",
  "config": {},
  "experiments": {
   "ok": true,
@@ -52,7 +52,7 @@
  },
  "outline_numbers": {
   "ok": true,
-  "values_checked": 255,
+  "values_checked": 254,
   "mismatched": [],
   "outline_equals_fresh_render": true,
   "unfilled_placeholders": 0
@@ -70,13 +70,6 @@
   "ok": true,
   "differing": [],
   "missing": []
- },
- "references": {
-  "ok": true,
-  "n_bib": 25,
-  "n_plan": 25,
-  "only_in_bib": [],
-  "only_in_plan": []
  },
  "compile": {
   "ok": true,
@@ -166,7 +159,7 @@
    },
    {
     "where": "paper/main.pdf text",
-    "line": 957,
+    "line": 977,
     "pattern": "nagarajan",
     "text": "[4] V. Nagarajan, A. Mittal, PEBSA: Predicting Economic Behavior via Sentiment Analysis, Inter-",
     "allowed": true

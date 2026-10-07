@@ -1,4 +1,4 @@
-"""Forecast evaluation: error metrics, tests and bootstrap intervals (PLAN.md section 7)."""
+"""Forecast evaluation: error metrics, tests and bootstrap intervals."""
 from __future__ import annotations
 
 import math

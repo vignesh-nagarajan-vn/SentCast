@@ -1,4 +1,4 @@
-"""Numbered experiments E01 .. E12 (PLAN.md section 9).
+"""Numbered experiments E01 .. E12.
 
 Each experiment writes results/E##_<name>.json through config.write_result, which adds
 the git commit and config hash. Nothing here chooses a setting from the evaluation data.
@@ -613,7 +613,7 @@ def e12_llm() -> None:
     if rest:
         out["second_model"] = _llm_block(rest[0], "E12b")
     write_result("E12_llm", out, _common_config(llm=lcfg, note="llm index built like the other scorer indices "
-                                                              "(PLAN.md section 5) from every kept headline"))
+                                                              "from every kept headline"))
 
 
 def _llm_block(mcfg: dict, tag: str) -> dict:
