@@ -23,7 +23,6 @@ paper/*.toc
 
 # local settings and secrets
 .env
-.claude/settings.local.json
 paper/*.xmpdata
 paper/*.abs
 paper/pdfa.xmpi

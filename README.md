@@ -1,7 +1,22 @@
 # SentCast
 
-Tests whether sentiment in public text improves forecasts of the S&P 500 monthly return
-and of US consumer sentiment.
+- **Paper title:** Out-of-Sample Evaluation of Textual News Sentiment for Predicting the
+  Equity Premium and Consumer Sentiment
+  - Referred to in this repository as SentCast, short for Sentiment Forecast
+- **Paper info:** 17 pages, 9 tables, 7 figures, 25 references (`paper/main.pdf`)
+- **Author:** Vignesh Nagarajan
+- **Target venue:** [BDAI 2026 Workshop](https://www.univda.it/bdai2026/)
+
+## Methodology
+
+- **Question:** does a sentiment index built from free news headlines improve
+  one-month-ahead forecasts of the S&P 500 excess return, its direction and the change in
+  US consumer sentiment?
+- **Data:** GDELT headlines for 2015 to 2026, FRED, the Welch-Goyal file and three
+  published indices. All free.
+- **Design:** plan, models, tests and decision rule frozen before any experiment ran
+  (`PLAN.md`); twelve experiments, all reported; leakage tests in `tests/`.
+- **Result:** null for all three targets at one month. Details: `results/SUMMARY.md`.
 
 ## Prior work
 
@@ -10,44 +25,29 @@ https://doi.org/10.18535/ijecs/v13i12.4950. The paper is in `legacy/`. SentCast 
 as motivating prior work and reuses none of its text, numbers, figures, code or data.
 Audit: `docs/audit.md`.
 
-## Status
+## Layout
 
-As of 2026-10-06: Phase 1 (audit, data check, plan), Phase 2
-(pipeline, corpus, experiments E01 to E12) and Phase 3 (paper skeleton, writing brief,
-verification) are complete. Results: `results/SUMMARY.md`. All twelve experiments come
-from one commit. They were run again after an independent check of a first run found
-errors; the corrections are listed in `PLAN.md` under "Deviations", and the outcome
-labels did not change. The paper is in `paper/main.tex`.
+```
+PLAN.md        research plan, frozen before the first experiment
+config/        all parameters
+src/sentcast/  pipeline, from downloads to tables, figures and checks
+tests/         unit tests, including the leakage tests
+results/       one file per experiment, tables, figures, SUMMARY.md
+paper/         paper source and PDF, generated tables and figures
+docs/          PEBSA audit, data check, paper outline
+legacy/        the PEBSA paper
+data/          downloads and intermediate files; gitignored
+```
+
+`results/` holds values derived from third-party series. Check the source terms in
+`docs/data.md` before making the repository public.
 
 ## Run
 
 ```bash
-python -m venv .venv
-.venv/Scripts/python -m pip install -e ".[dev]"
-.venv/Scripts/python -m sentcast.run
+pip install -e ".[dev]"
+python -m sentcast.run
 ```
 
-`sentcast.run` goes from raw downloads to every table and figure, then renders the writing
-brief. Steps can be run one at a time: `python -m sentcast.run --help`. Tests:
-`python -m pytest`. Verification pass: `python -m sentcast.verify --compile`.
-
-Everything except E12 uses free data. E12 scores the headlines with two hosted language
-models and runs only if `ANTHROPIC_API_KEY` is set (`pip install -e ".[llm]"`); without
-the key it is recorded as skipped and its table and brief entries are left out.
-
-## Layout
-
-| Path | Content |
-|---|---|
-| `PLAN.md` | Research plan, frozen before the first experiment |
-| `config/sentcast.yaml` | All parameters |
-| `src/sentcast/` | Pipeline: download, score, index, forecast, evaluate, report |
-| `tests/` | Unit tests, including the leakage tests |
-| `results/` | One file per experiment, tables, figures, `SUMMARY.md` |
-| `data/` | Downloads and intermediate files; gitignored |
-| `paper/` | Paper source, generated tables and figures |
-| `docs/` | Audit, data check, writing brief |
-| `legacy/` | The PEBSA paper |
-
-`results/` holds values derived from third-party series (monthly returns, index changes).
-Check the source terms in `docs/data.md` before making the repository public.
+Runs every step from raw downloads to tables and figures; `--help` lists them. E12 needs
+`ANTHROPIC_API_KEY` and is skipped without it.
