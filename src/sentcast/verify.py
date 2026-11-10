@@ -1,7 +1,8 @@
 """Mechanical checks for the verification pass. Writes results/verification.json.
 
-    python -m sentcast.verify            # checks on files
-    python -m sentcast.verify --compile  # also compile paper/main.tex first
+    python -m sentcast.verify                         # checks on files
+    python -m sentcast.verify --compile               # also compile paper/main.tex first
+    python -m sentcast.verify --review double-blind   # anonymity check for double-blind review
 
 Checks:
   1. every experiment E01..E12 has a result file, from one clean commit, and a SUMMARY row
@@ -9,13 +10,17 @@ Checks:
   2b. the paper text takes every result from the generated \\res{key} macros: the macro file
       is current, every key used exists, and no decimal number is typed in paper/main.tex
   3. tables and figures under paper/ are identical to those under results/
-  4. nothing under paper/ (sources, PDF text, PDF metadata) names the author, an
-     affiliation, the repository, or acknowledgements; the cited PEBSA reference is the
-     one allowed place for the author's surname
+  4. --review named (default, single-blind): nothing under paper/ (sources, PDF text, PDF
+     metadata, raw PDF bytes) holds the local user name, a local path or an identity string
+     the author did not choose to print, and the PDF text names the author.
+     --review double-blind: nothing under paper/ names the author, an affiliation, the
+     repository, or acknowledgements; the cited PEBSA reference is the one allowed place for
+     the author's surname
   5. with --compile: paper/main.tex compiles without errors and embeds Libertinus fonts
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import filecmp
 import json
@@ -31,6 +36,14 @@ EXPERIMENTS = [f"E{i:02d}" for i in range(1, 13)]
 # identity strings that must not appear under paper/ (case-insensitive)
 FORBIDDEN = [r"vignesh", r"nagarajan", r"nrvig", r"tamu", r"texas\s*a\s*&?\s*m", r"basis\s+phoenix",
              r"github\.com", r"sentcast", r"acknowledg", r"@gmail"]
+REVIEW_MODES = ("named", "double-blind")
+AUTHOR_NAME = "Vignesh Nagarajan"
+# named (single-blind) review: the author's name, affiliation, email, SentCast and the
+# repository URL may appear; local-machine leaks and unchosen identity strings may not
+LOCAL_LEAKS = [r"nrvig", r"\b[a-z]:\\", r"users\\", r"\b[a-z]:/users", r"/c/users"]
+NAMED_FORBIDDEN = LOCAL_LEAKS + [r"basis\s+phoenix", r"@gmail"]
+# raw PDF bytes include compressed streams, so only patterns too long to occur by chance
+NAMED_FORBIDDEN_BYTES = [rb"nrvig", rb"[a-z]:[\\/]{1,2}users", rb"/c/users", rb"users\\", rb"@gmail"]
 TEXT_SUFFIXES = {".tex", ".bib", ".bbl", ".txt", ".md"}
 PEBSA_KEY = "nagarajan2024pebsa"
 # decimal numbers the paper text may contain as typed: the significance level and the
@@ -125,7 +138,7 @@ def check_paper_numbers() -> dict:
 
 
 
-def _scan(text: str, where: str, ignore: str = "") -> list[dict]:
+def _scan(text: str, where: str, ignore: str = "", patterns: list[str] = FORBIDDEN) -> list[dict]:
     """Every line that matches a forbidden pattern. Callers decide which hits are allowed.
 
     `ignore` is removed from each line first: the citation key of the PEBSA reference holds the
@@ -134,18 +147,68 @@ def _scan(text: str, where: str, ignore: str = "") -> list[dict]:
     hits = []
     for i, line in enumerate(text.splitlines(), 1):
         probe = line.replace(ignore, "") if ignore else line
-        for pat in FORBIDDEN:
+        for pat in patterns:
             if re.search(pat, probe, flags=re.I):
                 hits.append({"where": where, "line": i, "pattern": pat, "text": line.strip()[:120], "allowed": False})
     return hits
 
 
-def check_anonymity() -> dict:
+def _pdf_extract(pdf) -> tuple[dict, str, bytes]:
+    """Metadata fields, layout text and raw bytes of a PDF (pdfinfo and pdftotext)."""
+    meta = {}
+    info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True, errors="replace").stdout
+    for line in info.splitlines():
+        k, _, v = line.partition(":")
+        if k.strip() in ("Title", "Author", "Subject", "Keywords", "Creator", "Producer"):
+            meta[k.strip()] = v.strip()
+    txt = subprocess.run(["pdftotext", "-layout", str(pdf), "-"], capture_output=True, text=True, errors="replace").stdout
+    return meta, txt, pdf.read_bytes()
+
+
+def check_anonymity(review: str = "named", paper=None) -> dict:
+    if review not in REVIEW_MODES:
+        raise ValueError(f"review must be one of {REVIEW_MODES}, not {review!r}")
+    if review == "named":
+        return check_named(paper if paper is not None else PAPER)
+    return check_double_blind(paper if paper is not None else PAPER)
+
+
+def check_named(paper) -> dict:
+    """Single-blind paper: the author's name, affiliation, email, SentCast and the repository
+    URL may appear. Local-machine leaks (user name, local paths) and identity strings the
+    author did not choose to print still fail, and the author's name must be in the PDF text."""
     hits: list[dict] = []
-    for p in sorted(PAPER.rglob("*")):
+    for p in sorted(paper.rglob("*")):
         if p.is_file() and p.suffix in TEXT_SUFFIXES:
             text = p.read_text(encoding="utf-8", errors="replace")
-            rel = str(p.relative_to(ROOT)).replace("\\", "/")
+            hits += _scan(text, _rel(p, paper), patterns=NAMED_FORBIDDEN)
+    pdf = paper / "main.pdf"
+    meta: dict = {}
+    name_in_pdf = False
+    if pdf.exists():
+        meta, txt, raw = _pdf_extract(pdf)
+        for k, v in meta.items():
+            hits += _scan(v, f"paper/main.pdf metadata {k}", patterns=NAMED_FORBIDDEN)
+        hits += _scan(txt, "paper/main.pdf text", patterns=NAMED_FORBIDDEN)
+        for pat in NAMED_FORBIDDEN_BYTES:
+            if re.search(pat, raw, flags=re.I):
+                hits.append({"where": "paper/main.pdf raw bytes", "line": 0, "pattern": pat.decode(),
+                             "text": "", "allowed": False})
+        name_in_pdf = AUTHOR_NAME.lower() in " ".join(txt.split()).lower()
+    return {"ok": not hits and name_in_pdf, "review": "named", "pdf_checked": pdf.exists(),
+            "author_name_in_pdf_text": name_in_pdf, "pdf_metadata": meta, "violations": hits}
+
+
+def _rel(p, paper) -> str:
+    return "paper/" + str(p.relative_to(paper)).replace("\\", "/")
+
+
+def check_double_blind(paper) -> dict:
+    hits: list[dict] = []
+    for p in sorted(paper.rglob("*")):
+        if p.is_file() and p.suffix in TEXT_SUFFIXES:
+            text = p.read_text(encoding="utf-8", errors="replace")
+            rel = _rel(p, paper)
             for h in _scan(text, rel, ignore=PEBSA_KEY if p.suffix == ".tex" else ""):
                 # the PEBSA reference is cited in the third person: its author field and key are expected
                 in_pebsa = False
@@ -155,30 +218,24 @@ def check_anonymity() -> dict:
                     in_pebsa = "pebsa" in " ".join(lines[lo:h["line"] + 6]).lower()
                 h["allowed"] = bool(in_pebsa and h["pattern"] in (r"nagarajan", r"vignesh"))
                 hits.append(h)
-    pdf = PAPER / "main.pdf"
+    pdf = paper / "main.pdf"
     meta = {}
     if pdf.exists():
-        info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True, errors="replace").stdout
-        for line in info.splitlines():
-            k, _, v = line.partition(":")
-            if k.strip() in ("Title", "Author", "Subject", "Keywords", "Creator", "Producer"):
-                meta[k.strip()] = v.strip()
+        meta, txt, raw = _pdf_extract(pdf)
         for k, v in meta.items():
             for pat in FORBIDDEN:
                 if re.search(pat, v, flags=re.I):
                     hits.append({"where": f"paper/main.pdf metadata {k}", "line": 0, "pattern": pat, "text": v, "allowed": False})
-        txt = subprocess.run(["pdftotext", "-layout", str(pdf), "-"], capture_output=True, text=True, errors="replace").stdout
         lines = txt.splitlines()
         for h in _scan(txt, "paper/main.pdf text"):
             ctx = " ".join(lines[max(0, h["line"] - 2):h["line"] + 2]).lower()
             h["allowed"] = bool("pebsa" in ctx and h["pattern"] in (r"nagarajan",))
             hits.append(h)
-        raw = pdf.read_bytes()
         for pat in (rb"Vignesh", rb"nrvig", rb"SentCast", rb"github\.com"):
             if re.search(pat, raw):
                 hits.append({"where": "paper/main.pdf raw bytes", "line": 0, "pattern": pat.decode(), "text": "", "allowed": False})
     bad = [h for h in hits if not h["allowed"]]
-    return {"ok": not bad, "pdf_checked": pdf.exists(), "pdf_metadata": meta, "violations": bad,
+    return {"ok": not bad, "review": "double-blind", "pdf_checked": pdf.exists(), "pdf_metadata": meta, "violations": bad,
             "allowed_occurrences": [h for h in hits if h["allowed"]]}
 
 
@@ -207,12 +264,17 @@ def compile_paper() -> dict:
             "fonts": font_names, "fonts_not_embedded": not_embedded}
 
 
-def main() -> None:
-    report = {"experiments": check_experiments(), "outline_numbers": check_outline_numbers(),
+def main(argv: list[str] | None = None) -> None:
+    ap = argparse.ArgumentParser(prog="python -m sentcast.verify", description="Verification pass.")
+    ap.add_argument("--compile", action="store_true", help="compile paper/main.tex first")
+    ap.add_argument("--review", choices=REVIEW_MODES, default="named",
+                    help="anonymity check: named (single-blind, default) or double-blind")
+    args = ap.parse_args(argv)
+    report = {"review": args.review, "experiments": check_experiments(), "outline_numbers": check_outline_numbers(),
               "paper_numbers": check_paper_numbers(), "paper_mirror": check_mirror()}
-    if "--compile" in sys.argv:
+    if args.compile:
         report["compile"] = compile_paper()
-    report["anonymity"] = check_anonymity()
+    report["anonymity"] = check_anonymity(args.review)
     report["all_ok"] = all(v["ok"] for v in report.values() if isinstance(v, dict))
     write_result("verification", report)
     for k, v in report.items():
