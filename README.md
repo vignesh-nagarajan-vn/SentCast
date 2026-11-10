@@ -64,16 +64,20 @@ one month.
 
 ## Figures
 
+Numbered as in the paper.
+
 <table>
   <tr>
-    <td width="33%"><img src="results/figures/fig5_timing.png" alt="Timeline of one forecast: each input's window ends before the forecast date, and the target is the following month"><br><sub><b>Timing.</b> What each forecast may use, and the estimation and test months.</sub></td>
-    <td width="33%"><img src="results/figures/fig1_indices.png" alt="Six headline sentiment indices from 2015 to 2026 moving with the San Francisco Fed news sentiment index, all dipping in 2020"><br><sub><b>Indices.</b> Headline indices against the San Francisco Fed index.</sub></td>
-    <td width="33%"><img src="results/figures/fig6_agreement.png" alt="Correlation heatmaps between scorers, per headline and per month, with weak agreement between VADER and the classifier"><br><sub><b>Agreement.</b> Correlation between scorers, per headline and per month.</sub></td>
+    <td width="50%" valign="top"><img src="results/figures/fig4_coverage.png" alt="Headlines per month near 1,000 throughout 2015 to 2026, valid days near 30 except a drop in mid-2025, and page titles appearing from late 2019"><br><sub><b>Figure 1. Coverage.</b> Headlines, valid days and page-title share by index month.</sub></td>
+    <td width="50%" valign="top"><img src="results/figures/fig5_timing.png" alt="Timeline of one forecast: each input's window ends before the forecast date, and the target is the following month"><br><sub><b>Figure 2. Timing.</b> What each forecast may use, and the estimation and test months.</sub></td>
   </tr>
   <tr>
-    <td width="33%"><img src="results/figures/fig2_cssed.png" alt="Cumulative squared-error gain of the composite over each benchmark, jumping in early 2020 and drifting afterwards"><br><sub><b>Gains over time.</b> Cumulative squared-error difference against each benchmark.</sub></td>
-    <td width="33%"><img src="results/figures/fig3_r2.png" alt="Out-of-sample R-squared by predictor with 90% intervals, nearly all of them crossing zero"><br><sub><b>Out-of-sample R-squared.</b> Point estimates and 90% bootstrap intervals.</sub></td>
-    <td width="33%"><img src="results/figures/fig7_probability.png" alt="Predicted probability of a rise staying above 0.5 in every test month for all text indices"><br><sub><b>Direction.</b> Predicted probability that the S&P 500 rises next month.</sub></td>
+    <td width="50%" valign="top"><img src="results/figures/fig6_agreement.png" alt="Correlation heatmaps between scorers, per headline and per month, with weak agreement between VADER and the classifier"><br><sub><b>Figure 3. Agreement.</b> Correlation between scorers, per headline and per month.</sub><br><br><img src="results/figures/fig2_cssed.png" alt="Cumulative squared-error gain of the composite over each benchmark, jumping in early 2020 and drifting afterwards"><br><sub><b>Figure 5. Gains over time.</b> Cumulative squared-error difference against each benchmark.</sub></td>
+    <td width="50%" valign="top"><img src="results/figures/fig1_indices.png" alt="Six headline sentiment indices from 2015 to 2026 moving with the San Francisco Fed news sentiment index, all dipping in 2020"><br><sub><b>Figure 4. Indices.</b> Headline indices against the San Francisco Fed index.</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><img src="results/figures/fig3_r2.png" alt="Out-of-sample R-squared by predictor with 90% intervals, nearly all of them crossing zero"><br><sub><b>Figure 6. Out-of-sample R-squared.</b> Point estimates and 90% bootstrap intervals.</sub></td>
+    <td width="50%" valign="top"><img src="results/figures/fig7_probability.png" alt="Predicted probability of a rise staying above 0.5 in every test month for all text indices"><br><sub><b>Figure 7. Direction.</b> Predicted probability that the S&P 500 rises next month.</sub></td>
   </tr>
 </table>
 
