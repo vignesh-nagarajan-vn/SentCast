@@ -14,7 +14,9 @@ one month.
 * **Paper:** *Out-of-Sample Evaluation of Textual News Sentiment for Predicting the Equity
   Premium and Consumer Sentiment* ([`paper/main.pdf`](paper/main.pdf)), 21 pages, 9 tables,
   7 figures, 25 references.
-* **Journal:** [Journal of Forecasting](https://onlinelibrary.wiley.com/journal/1099131x) (Wiley), not yet submitted.
+* **Journal:** [Journal of Forecasting](https://onlinelibrary.wiley.com/journal/1099131x) (Wiley), submitted on 10 Nov 2026, in review.
+
+## Functionality
 
 <p align="center">
   <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white">
@@ -29,8 +31,6 @@ one month.
   <img src="https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515">
   <img src="https://img.shields.io/badge/pytest-%230A9EDC.svg?style=for-the-badge&logo=pytest&logoColor=white">
 </p>
-
-## Functionality
 
 - **Headline corpus:** a seeded draw of two GDELT files a day, 2015 to 2026, with headlines
   rebuilt from article URLs and filtered to US economy and market news.
