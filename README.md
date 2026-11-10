@@ -1,7 +1,6 @@
 # SentCast
 
-**Sentiment Forecast: an out-of-sample test of news headline sentiment as a predictor of the
-S&P 500 and US consumer sentiment.**
+**Sentiment Forecast: does news sentiment predict the S&P 500 and consumer sentiment?**
 
 Does a monthly sentiment index built from free news headlines improve one-month-ahead
 forecasts of the S&P 500 excess return, its direction and the change in the University of
@@ -15,18 +14,8 @@ one month.
 * **Paper:** *Out-of-Sample Evaluation of Textual News Sentiment for Predicting the Equity
   Premium and Consumer Sentiment* ([`paper/main.pdf`](paper/main.pdf)), 21 pages, 9 tables,
   7 figures, 25 references.
-* **Journal:** Journal of Forecasting (Wiley), not yet submitted.
+* **Journal:** [Journal of Forecasting](https://onlinelibrary.wiley.com/journal/1099131x) (Wiley), not yet submitted.
 
-## Timeline
-
-- **7 Oct 2026:** pipeline, experiments and paper complete; submitted to the BDAI 2026
-  workshop, which was later cancelled.
-- **10 Nov 2026:** revised for the Journal of Forecasting.
-
-## Tech Stack
-
-<!--- ML / NLP & scientific computing --->
-<p align="center"><sub><b>ML / NLP & Scientific Computing:</b></sub></p>
 <p align="center">
   <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white">
   <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black">
@@ -36,11 +25,6 @@ one month.
   <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white">
   <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white">
   <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black">
-</p>
-
-<!--- Language, config & testing --->
-<p align="center"><sub><b>Language, Config & Testing:</b></sub></p>
-<p align="center">
   <img src="https://img.shields.io/badge/python%203.11+-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54">
   <img src="https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515">
   <img src="https://img.shields.io/badge/pytest-%230A9EDC.svg?style=for-the-badge&logo=pytest&logoColor=white">
