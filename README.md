@@ -15,8 +15,13 @@ one month.
 * **Paper:** *Out-of-Sample Evaluation of Textual News Sentiment for Predicting the Equity
   Premium and Consumer Sentiment* ([`paper/main.pdf`](paper/main.pdf)), 21 pages, 9 tables,
   7 figures, 25 references.
-* **Workshop:** submitted to BDAI 2026 on 7 Oct 2026; the workshop was cancelled.
 * **Journal:** Journal of Forecasting (Wiley), not yet submitted.
+
+## Timeline
+
+- **7 Oct 2026:** pipeline, experiments and paper complete; submitted to the BDAI 2026
+  workshop, which was later cancelled.
+- **10 Nov 2026:** revised for the Journal of Forecasting.
 
 ## Tech Stack
 
@@ -26,7 +31,7 @@ one month.
   <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white">
   <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black">
   <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white">
-  <img src="https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white">
+  <img src="https://img.shields.io/badge/Anthropic%20API-191919?style=for-the-badge&logo=anthropic&logoColor=white">
   <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white">
   <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white">
   <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white">
@@ -39,14 +44,6 @@ one month.
   <img src="https://img.shields.io/badge/python%203.11+-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54">
   <img src="https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515">
   <img src="https://img.shields.io/badge/pytest-%230A9EDC.svg?style=for-the-badge&logo=pytest&logoColor=white">
-</p>
-
-<!--- Tooling & docs --->
-<p align="center"><sub><b>Tooling & Docs:</b></sub></p>
-<p align="center">
-  <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white">
-  <img src="https://img.shields.io/badge/BibTeX-008080?style=for-the-badge&logo=latex&logoColor=white">
 </p>
 
 ## Functionality
@@ -64,6 +61,21 @@ one month.
   results to positive, mixed or null.
 - **Generated paper numbers:** every result in the paper is printed from `results/` through
   `\res{key}` macros, and `sentcast.verify` checks them.
+
+## Figures
+
+<table>
+  <tr>
+    <td width="33%"><img src="results/figures/fig5_timing.png" alt="Timeline of one forecast: each input's window ends before the forecast date, and the target is the following month"><br><sub><b>Timing.</b> What each forecast may use, and the estimation and test months.</sub></td>
+    <td width="33%"><img src="results/figures/fig1_indices.png" alt="Six headline sentiment indices from 2015 to 2026 moving with the San Francisco Fed news sentiment index, all dipping in 2020"><br><sub><b>Indices.</b> Headline indices against the San Francisco Fed index.</sub></td>
+    <td width="33%"><img src="results/figures/fig6_agreement.png" alt="Correlation heatmaps between scorers, per headline and per month, with weak agreement between VADER and the classifier"><br><sub><b>Agreement.</b> Correlation between scorers, per headline and per month.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%"><img src="results/figures/fig2_cssed.png" alt="Cumulative squared-error gain of the composite over each benchmark, jumping in early 2020 and drifting afterwards"><br><sub><b>Gains over time.</b> Cumulative squared-error difference against each benchmark.</sub></td>
+    <td width="33%"><img src="results/figures/fig3_r2.png" alt="Out-of-sample R-squared by predictor with 90% intervals, nearly all of them crossing zero"><br><sub><b>Out-of-sample R-squared.</b> Point estimates and 90% bootstrap intervals.</sub></td>
+    <td width="33%"><img src="results/figures/fig7_probability.png" alt="Predicted probability of a rise staying above 0.5 in every test month for all text indices"><br><sub><b>Direction.</b> Predicted probability that the S&P 500 rises next month.</sub></td>
+  </tr>
+</table>
 
 ## Repository layout
 
