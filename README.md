@@ -3,9 +3,10 @@
 - **Paper title:** Out-of-Sample Evaluation of Textual News Sentiment for Predicting the
   Equity Premium and Consumer Sentiment
   - Referred to in this repository as SentCast, short for Sentiment Forecast
-- **Paper info:** 17 pages, 9 tables, 7 figures, 25 references (`paper/main.pdf`)
+- **Paper info:** 21 pages, 9 tables, 7 figures, 25 references (`paper/main.pdf`)
 - **Author:** Vignesh Nagarajan
-- **Submitted to:** [BDAI 2026 Workshop](https://www.univda.it/bdai2026/) on 2026-10-07 (CMT paper ID 12, under review)
+- **Submitted to:** [BDAI 2026 Workshop](https://www.univda.it/bdai2026/) on 2026-10-07; the workshop was cancelled
+- **Target:** Journal of Forecasting (Wiley), not yet submitted
 
 ## Methodology
 
@@ -42,3 +43,5 @@ python -m sentcast.run
 
 Runs every step from raw downloads to tables and figures; `--help` lists them. E12 needs
 `ANTHROPIC_API_KEY` and is skipped without it.
+
+E12 reproduces from the cached labels in `data/interim/`, since a scorer model may be retired.
